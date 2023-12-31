@@ -993,7 +993,7 @@ public class LeetCode {
 
 	public static void main(String[] args) {
 
-		System.out.println(maxGold(1, 5, new int[][] { { 0, 0, 0, 0, 0 } }));
+		System.out.println(maxGold(1, 4, new int[][] { { 0, 0, 0, 0 } }));
 
 		System.out.println(factors(985));
 
