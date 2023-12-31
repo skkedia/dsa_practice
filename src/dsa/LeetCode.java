@@ -954,6 +954,27 @@ public class LeetCode {
          return ans;
 		
     }
+	
+	public static String[] winner(String arr[], int n)
+    {
+        Map<String, Integer> hm = new HashMap<>();
+        
+        for(String name : arr) {
+            hm.put(name, hm.getOrDefault(name, 0) + 1);
+        }
+        String[] ans = new String[2];
+        ans[0] = "";
+        ans[1] = "-1";
+        for(Map.Entry<String, Integer> en : hm.entrySet()) {
+            if(en.getValue() > Integer.parseInt(ans[1])) {
+                ans[1] = String.valueOf(en.getValue());
+                ans[0] = en.getKey();
+            } else if(en.getValue() == Integer.parseInt(ans[1])) {
+                ans[0] = ans[0].compareTo(en.getKey()) > 0 ? en.getKey() : ans[0];
+            }
+        }
+        return ans;
+    }
 
 
 	public static void main(String[] args) {
