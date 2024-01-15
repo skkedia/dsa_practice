@@ -1081,10 +1081,52 @@ public class LeetCode {
     public static void rotateArr(int arr[], int d, int n) {
         int temp = -1;
         for (int i = 0; i < arr.length; i++) {
+            temp = arr[i + d];
+
         }
     }
 
+    public static int max_courses(int n, int total, int[] cost) {
+        int ans = 0;
+        double rem = total;
+        for (Integer x : cost) {
+            if (rem >= x) {
+                ans++;
+                rem = rem - Math.floor(x * 0.9);
+            }
+        }
+        return ans;
+    }
+
+    public List<List<Integer>> findWinners(int[][] matches) {
+        List<List<Integer>> ans = new ArrayList<>();
+        Map<Integer, Integer> mp = new HashMap<>();
+
+        for (int i = 0; i < matches.length; i++) {
+            mp.put(matches[i][0], mp.getOrDefault(matches[i][0], 0));
+            mp.put(matches[i][1], mp.getOrDefault(matches[i][1], 0) + 1);
+        }
+        List<Integer> l1 = new ArrayList<>();
+        List<Integer> l2 = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> entry : mp.entrySet()) {
+            if (entry.getValue() == 0) {
+                l1.add(entry.getKey());
+            }
+            if (entry.getValue() == 1) {
+                l2.add(entry.getKey());
+            }
+        }
+        Collections.sort(l1);
+        Collections.sort(l2);
+        ans.add(l1);
+        ans.add(l2);
+        return ans;
+    }
+
     public static void main(String[] args) {
+
+        System.out.println(max_courses(11, 10, new int[] { 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }));
+
         System.out.println(is_palindrome(555));
 
         System.out.println(closeStrings("abc", "cba"));
