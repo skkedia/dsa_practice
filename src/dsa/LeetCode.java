@@ -74,7 +74,7 @@ class OrderedStream {
 
 public class LeetCode {
 
-    public static int canBeTypedWords(String text, String brokenLetters) {
+    private static int canBeTypedWords(String text, String brokenLetters) {
         String[] strarr = text.split(" ");
         char[] bw = brokenLetters.toCharArray();
         int count = strarr.length;
@@ -94,7 +94,7 @@ public class LeetCode {
         return count < 0 ? 0 : count;
     }
 
-    public static List<String> summaryRanges(int[] nums) {
+    private static List<String> summaryRanges(int[] nums) {
         List<String> ans = new ArrayList<>();
 
         for (int i = 0; i < nums.length; i++) {
@@ -111,7 +111,7 @@ public class LeetCode {
         return ans;
     }
 
-    public static int findClosestNumber(int[] nums) {
+    private static int findClosestNumber(int[] nums) {
         int ans = Integer.MAX_VALUE;
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
@@ -131,7 +131,7 @@ public class LeetCode {
         return map.get(ans);
     }
 
-    public static int findMinDifference(List<String> t) {
+    private static int findMinDifference(List<String> t) {
         t = new ArrayList<>();
 
         t.add("05:31");
@@ -156,7 +156,7 @@ public class LeetCode {
         return min;
     }
 
-    public static int alternateDigitSum(int n) {
+    private static int alternateDigitSum(int n) {
         boolean flag = true;
         int ans = 0;
         int[] arr = new int[Integer.toString(n).length()];
@@ -179,7 +179,7 @@ public class LeetCode {
         return ans;
     }
 
-    public static int[] separateDigits(int[] nums) {
+    private static int[] separateDigits(int[] nums) {
         StringBuilder sb = new StringBuilder();
         for (Integer n : nums) {
             sb.append(new StringBuilder().append(Integer.toString(n)).reverse());
@@ -191,7 +191,7 @@ public class LeetCode {
         return ans;
     }
 
-    public static int countEven(int num) {
+    private static int countEven(int num) {
         int count = 0;
         for (int i = 2; i <= num; i++) {
             int j = i;
@@ -208,7 +208,7 @@ public class LeetCode {
         return count;
     }
 
-    public static int maxDivScore(int[] n, int[] d) {
+    private static int maxDivScore(int[] n, int[] d) {
         Arrays.sort(d);
         int prev = -1;
         int cur = 0;
@@ -240,7 +240,7 @@ public class LeetCode {
         return d[idx];
     }
 
-    public static int pivotInteger(int n) {
+    private static int pivotInteger(int n) {
         int t = ((n * (n + 1)) / 2);
 
         for (int i = 1; i <= n; i++) {
@@ -252,7 +252,7 @@ public class LeetCode {
         return -1;
     }
 
-    public static int minimumOperations(int[] nums) {
+    private static int minimumOperations(int[] nums) {
         Set<Integer> s = new HashSet<>();
         for (Integer n : nums) {
             if (n != 0 && s.add(n)) {
@@ -262,7 +262,7 @@ public class LeetCode {
         return s.size();
     }
 
-    public static String finalString(String s) {
+    private static String finalString(String s) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == 'i') {
@@ -274,7 +274,7 @@ public class LeetCode {
         return sb.toString();
     }
 
-    public static String reverseOnlyLetters(String s) {
+    private static String reverseOnlyLetters(String s) {
         /*
          *
          * string
@@ -304,7 +304,7 @@ public class LeetCode {
         return new String(arr);
     }
 
-    public static int vowelStrings(String[] words, int left, int right) {
+    private static int vowelStrings(String[] words, int left, int right) {
         int count = 0;
         for (int i = left; i <= right; i++) {
             String s = words[i];
@@ -325,7 +325,7 @@ public class LeetCode {
         return count;
     }
 
-    public static int maxPower(String s) {
+    private static int maxPower(String s) {
         int max = Integer.MIN_VALUE;
         char[] arr = s.toCharArray();
         for (int i = 0; i < arr.length; i++) {
@@ -343,7 +343,7 @@ public class LeetCode {
         return max;
     }
 
-    public static List<String> alertNames(String[] keyName, String[] keyTime) {
+    private static List<String> alertNames(String[] keyName, String[] keyTime) {
         Set<String> ans = new HashSet<>();
         Map<String, List<Integer>> map = new HashMap<>();
         for (int i = 0; i < keyName.length; i++) {
@@ -379,14 +379,14 @@ public class LeetCode {
                 Integer.parseInt(time.split(":")[1]));
     }
 
-    public static String largestNumber(int[] nums) {
+    private static String largestNumber(int[] nums) {
         StringBuilder sb = new StringBuilder();
         Arrays.sort(nums);
 
         return sb.toString();
     }
 
-    public static int numRabbits(int[] answers) {
+    private static int numRabbits(int[] answers) {
         Map<Integer, Integer> map = new HashMap<>();
         for (Integer ans : answers) {
             map.put(ans, map.getOrDefault(ans, 0) + 1);
@@ -400,7 +400,7 @@ public class LeetCode {
         return rabbit;
     }
 
-    public static List<String> splitWordsBySeparator(
+    private static List<String> splitWordsBySeparator(
             List<String> words,
             char separator) {
         List<String> ans = new LinkedList<>();
@@ -416,7 +416,7 @@ public class LeetCode {
         return ans;
     }
 
-    public static String smallestString(String s) {
+    private static String smallestString(String s) {
         String ans = "";
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < s.length(); i++) {
@@ -428,7 +428,7 @@ public class LeetCode {
         return ans;
     }
 
-    public static int partitionString(String s) {
+    private static int partitionString(String s) {
         int count = 1;
         String sb = "";
         for (int i = 0; i < s.length(); i++) {
@@ -445,7 +445,7 @@ public class LeetCode {
     // airport(lexically asc sorted)
     private static LinkedList<String> res = new LinkedList<>(); // result
 
-    public static List<String> findItinerary(List<List<String>> tickets) {
+    private static List<String> findItinerary(List<List<String>> tickets) {
         tickets = new ArrayList<>();
         List<String> t1 = new ArrayList<>();
         t1.add("muc");
@@ -487,7 +487,7 @@ public class LeetCode {
         return;
     }
 
-    public static String[] findWords(String[] words) {
+    private static String[] findWords(String[] words) {
         String r1 = "qwertyuiop";
         String r2 = "asdfghjkl";
         String r3 = "zxcvbnm";
@@ -536,7 +536,7 @@ public class LeetCode {
         return ans.toArray(new String[0]);
     }
 
-    public static int[] nextGreaterElement(int[] nums1, int[] nums2) {
+    private static int[] nextGreaterElement(int[] nums1, int[] nums2) {
         int[] ans = new int[nums1.length];
         for (int i = 0; i < nums1.length; i++) {
             int a = nums1[i];
@@ -563,11 +563,11 @@ public class LeetCode {
         return ans;
     }
 
-    public int strStr(String haystack, String needle) {
+    private int strStr(String haystack, String needle) {
         return haystack.indexOf(needle);
     }
 
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+    private double findMedianSortedArrays(int[] nums1, int[] nums2) {
         double d = 0.0;
 
         int n = nums1.length;
@@ -587,7 +587,7 @@ public class LeetCode {
         return d;
     }
 
-    public String[] divideString(String s, int k, char fill) {
+    private String[] divideString(String s, int k, char fill) {
         List<String> ll = new ArrayList<>();
         int b = 0;
         int e = k;
@@ -602,11 +602,11 @@ public class LeetCode {
         return ll.toArray(new String[0]);
     }
 
-    public static void matrix(int[][] arr) {
+    private static void matrix(int[][] arr) {
         Arrays.sort(arr, (a, b) -> a[1] - b[1]);
     }
 
-    public String removeTrailingZeros(String num) {
+    private String removeTrailingZeros(String num) {
         for (int i = num.length() - 1; i >= 0; i--) {
             Character c = num.charAt(i);
             if (c != '0') {
@@ -616,7 +616,7 @@ public class LeetCode {
         return "";
     }
 
-    public int maximumNumberOfStringPairs(String[] words) {
+    private int maximumNumberOfStringPairs(String[] words) {
         int count = 0;
         Map<String, String> map = new HashMap<>();
         for (String word : words) {
@@ -628,7 +628,7 @@ public class LeetCode {
         return count;
     }
 
-    public static String entityParser(String text) {
+    private static String entityParser(String text) {
         return text
                 .replaceAll("&quot;", "\"")
                 .replaceAll("&apos;", "'")
@@ -638,7 +638,7 @@ public class LeetCode {
                 .replaceAll("&frasl;", "/");
     }
 
-    public static boolean findSubarrays(int[] nums) {
+    private static boolean findSubarrays(int[] nums) {
         Set<Integer> set = new HashSet<>();
         int i = 0;
         int k = i + 1;
@@ -654,7 +654,7 @@ public class LeetCode {
         return false;
     }
 
-    public static int maxScoreSightseeingPair(int[] values) {
+    private static int maxScoreSightseeingPair(int[] values) {
         int ans = -1;
         for (int i = 0; i < values.length; i++) {
             for (int j = i + 1; j < values.length; j++) {
@@ -665,7 +665,7 @@ public class LeetCode {
         return ans;
     }
 
-    public static boolean isAnagram(String a, String b) {
+    private static boolean isAnagram(String a, String b) {
         if (a.length() != b.length())
             return false;
         int[] arr = new int[26];
@@ -683,7 +683,7 @@ public class LeetCode {
         return true;
     }
 
-    public class TreeNode {
+    private class TreeNode {
 
         int val;
         TreeNode left;
@@ -703,7 +703,7 @@ public class LeetCode {
         }
     }
 
-    public static int[] findMode(TreeNode root) {
+    private static int[] findMode(TreeNode root) {
         Map<Integer, Integer> counter = new HashMap<>();
         dfs(root, counter);
         int maxFreq = 0;
@@ -728,7 +728,7 @@ public class LeetCode {
         return result;
     }
 
-    public static void dfs(TreeNode node, Map<Integer, Integer> counter) {
+    private static void dfs(TreeNode node, Map<Integer, Integer> counter) {
         if (node == null) {
             return;
         }
@@ -738,7 +738,7 @@ public class LeetCode {
         dfs(node.right, counter);
     }
 
-    public static List<Integer> findPeaks(int[] mountain) {
+    private static List<Integer> findPeaks(int[] mountain) {
         List<Integer> list = new ArrayList<>();
         for (int i = 1; i < mountain.length - 1; i++) {
             if (mountain[i] > mountain[i - 1] && mountain[i] > mountain[i + 1]) {
@@ -748,7 +748,7 @@ public class LeetCode {
         return list;
     }
 
-    int countX(int L, int R, int X) {
+    private static int countX(int L, int R, int X) {
         int ans = 0;
         for (int i = L + 1; i < R; i++) {
             int n = i;
@@ -762,7 +762,7 @@ public class LeetCode {
         return ans;
     }
 
-    static int[] minHeap(int n, int[][] q) {
+    private static int[] minHeap(int n, int[][] q) {
         List<Integer> ll = new ArrayList<>();
         Queue<Integer> a = new PriorityQueue<>();
 
@@ -780,7 +780,7 @@ public class LeetCode {
         return arr;
     }
 
-    public static int minNumber(int arr[], int N) {
+    private static int minNumber(int arr[], int N) {
         int sum = 0;
 
         for (Integer i : arr) {
@@ -887,7 +887,7 @@ public class LeetCode {
         return ans;
     }
 
-    public static String[] winner(String arr[], int n) {
+    private static String[] winner(String arr[], int n) {
         Map<String, Integer> hm = new HashMap<>();
 
         for (String name : arr) {
@@ -907,7 +907,7 @@ public class LeetCode {
         return ans;
     }
 
-    public static ArrayList<Integer> repeatedRows(int matrix[][], int m, int n) {
+    private static ArrayList<Integer> repeatedRows(int matrix[][], int m, int n) {
         Set<String> hashSet = new HashSet<>();
         ArrayList<Integer> ans = new ArrayList<>();
 
@@ -923,7 +923,7 @@ public class LeetCode {
         return ans;
     }
 
-    public static boolean closeStrings(String word1, String word2) {
+    private static boolean closeStrings(String word1, String word2) {
         int[] arr1 = new int[26];
         int[] arr2 = new int[26];
 
@@ -952,7 +952,7 @@ public class LeetCode {
         return true;
     }
 
-    public static ArrayList<Integer> duplicates(int arr[], int n) {
+    private static ArrayList<Integer> duplicates(int arr[], int n) {
         // code here
         Set<Integer> ans = new HashSet<>();
         Set<Integer> seen = new HashSet<>();
@@ -972,7 +972,7 @@ public class LeetCode {
         }
     }
 
-    public static boolean ispar(String x) {
+    private static boolean ispar(String x) {
         Stack<String> st = new Stack<>();
         for (int i = 0; i < x.length(); i++) {
             String c = String.valueOf(x.charAt(i));
@@ -994,7 +994,7 @@ public class LeetCode {
         return st.isEmpty();
     }
 
-    public static int firstRepeated(int[] arr, int n) {
+    private static int firstRepeated(int[] arr, int n) {
         // Your code here
         Map<Integer, Integer> hm = new HashMap<>();
 
@@ -1009,7 +1009,7 @@ public class LeetCode {
         return -1;
     }
 
-    public static String getBinaryRep(int N) {
+    private static String getBinaryRep(int N) {
         String binaryString = Integer.toBinaryString(N);
         String str = "";
         for (int i = 0; i < 30 - binaryString.length(); i++) {
@@ -1018,7 +1018,7 @@ public class LeetCode {
         return (str + binaryString);
     }
 
-    public int[] count(String s) {
+    private int[] count(String s) {
         int[] ans = new int[4];
         for (int i = 0; i < s.length(); i++) {
             int val = s.charAt(i);
@@ -1035,7 +1035,7 @@ public class LeetCode {
         return ans;
     }
 
-    public static String is_palindrome(int n) {
+    private static String is_palindrome(int n) {
         return String
                 .valueOf(n)
                 .equals(new StringBuilder(String.valueOf(n)).reverse().toString())
@@ -1043,7 +1043,7 @@ public class LeetCode {
                         : "No";
     }
 
-    public static ArrayList<Integer> leaders(int arr[], int n) {
+    private static ArrayList<Integer> leaders(int arr[], int n) {
         int maxSeen = Integer.MIN_VALUE;
         ArrayList<Integer> ans = new ArrayList<>();
         for (int i = arr.length - 1; i > 0; i--) {
@@ -1056,7 +1056,7 @@ public class LeetCode {
         return ans;
     }
 
-    public static boolean findPair(int arr[], int size, int n) {
+    private static boolean findPair(int arr[], int size, int n) {
         Set<Integer> hs = new HashSet<>();
         for (Integer i : arr) {
             if (hs.contains(n + i) || hs.contains(n - i)) {
@@ -1068,7 +1068,7 @@ public class LeetCode {
         return false;
     }
 
-    public static int countZeroes(int[] arr, int n) {
+    private static int countZeroes(int[] arr, int n) {
         int ans = 0;
         for (int i = arr.length - 1; i > -1; i--) {
             if (arr[i] == 0) {
@@ -1078,7 +1078,7 @@ public class LeetCode {
         return ans;
     }
 
-    public static void rotateArr(int arr[], int d, int n) {
+    private static void rotateArr(int arr[], int d, int n) {
         int temp = -1;
         for (int i = 0; i < arr.length; i++) {
             temp = arr[i + d];
@@ -1086,7 +1086,7 @@ public class LeetCode {
         }
     }
 
-    public static int max_courses(int n, int total, int[] cost) {
+    private static int max_courses(int n, int total, int[] cost) {
         int ans = 0;
         double rem = total;
         for (Integer x : cost) {
@@ -1098,7 +1098,7 @@ public class LeetCode {
         return ans;
     }
 
-    public List<List<Integer>> findWinners(int[][] matches) {
+    private List<List<Integer>> findWinners(int[][] matches) {
         List<List<Integer>> ans = new ArrayList<>();
         Map<Integer, Integer> mp = new HashMap<>();
 
@@ -1120,6 +1120,33 @@ public class LeetCode {
         Collections.sort(l2);
         ans.add(l1);
         ans.add(l2);
+        return ans;
+    }
+
+    private static String reverseWords(String S) {
+        StringBuilder ans = new StringBuilder();
+
+        String[] sp = S.split("\\.");
+        for (int i = sp.length - 1; i > -1; i--) {
+            ans.append(sp[i]).append(".");
+        }
+        ans.setLength(ans.length() - 1);
+        return ans.toString();
+    }
+
+    private static int transitionPoint(int arr[], int n) {
+        int start = 0;
+        int end = arr.length - 1;
+        int ans = -1;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (arr[mid] == 0) {
+                start = mid + 1;
+            } else {
+                ans = mid;
+                end = mid - 1;
+            }
+        }
         return ans;
     }
 
