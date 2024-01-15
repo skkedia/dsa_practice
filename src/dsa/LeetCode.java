@@ -1133,7 +1133,75 @@ public class LeetCode {
         return ans;
     }
 
+    private static int convertfive(int num) {
+        return Integer.parseInt(String.valueOf(num).replace("0", "5"));
+    }
+
+    private static int lastIndex(String s) {
+        return s.lastIndexOf("1");
+    }
+
+    private static String printNumber(String s, int n) {
+        String ans = "";
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            switch (c) {
+                case 'a':
+                case 'b':
+                case 'c':
+                    ans += "2";
+                    break;
+                case 'd':
+                case 'e':
+                case 'f':
+                    ans += "3";
+                    break;
+                case 'g':
+                case 'h':
+                case 'i':
+                    ans += "4";
+                    break;
+                case 'j':
+                case 'k':
+                case 'l':
+                    ans += "5";
+                    break;
+                case 'm':
+                case 'n':
+                case 'o':
+                    ans += "6";
+                    break;
+                case 'p':
+                case 'q':
+                case 'r':
+                case 's':
+                    ans += "7";
+                    break;
+                case 't':
+                case 'u':
+                case 'v':
+                    ans += "8";
+                    break;
+                case 'w':
+                case 'x':
+                case 'y':
+                case 'z':
+                    ans += "9";
+                    break;
+                default:
+                    break;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
+
+        System.out.println(printNumber("geeksforgeeks", 10));
+
+        System.out.println(lastIndex("0011779111"));
+
+        System.out.println(convertfive(1005));
 
         System.out.println(transitionPoint(new int[] { 0, 0, 1, 1, 1 }, 5));
 
