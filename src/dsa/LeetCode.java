@@ -72,6 +72,26 @@ class OrderedStream {
     }
 }
 
+class TreeNode {
+
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    public TreeNode() {
+    }
+
+    public TreeNode(int val) {
+        this.val = val;
+    }
+
+    public TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
 public class LeetCode {
 
     private static int canBeTypedWords(String text, String brokenLetters) {
@@ -671,26 +691,6 @@ public class LeetCode {
         return true;
     }
 
-    private class TreeNode {
-
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
     private static int[] findMode(TreeNode root) {
         Map<Integer, Integer> counter = new HashMap<>();
         dfs(root, counter);
@@ -1003,7 +1003,7 @@ public class LeetCode {
         return (str + binaryString);
     }
 
-    private int[] count(String s) {
+    private static int[] count(String s) {
         int[] ans = new int[4];
         for (int i = 0; i < s.length(); i++) {
             int val = s.charAt(i);
@@ -1064,9 +1064,7 @@ public class LeetCode {
     }
 
     private static void rotateArr(int arr[], int d, int n) {
-        int temp = -1;
         for (int i = 0; i < arr.length; i++) {
-            temp = arr[i + d];
 
         }
     }
@@ -1149,13 +1147,29 @@ public class LeetCode {
 
         System.out.println(countZeroes(new int[] { 0, 0, 0, 1, 1, 1, 1 }, 7));
 
+        System.out.println(findPair(new int[] { 2, 80, 30, 34 }, 4, 78));
+
+        System.out.println(leaders(new int[] { 1, 1, 1, 1, 1, 1 }, 6));
+
         System.out.println(max_courses(11, 10, new int[] { 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }));
 
         System.out.println(is_palindrome(555));
 
+        System.out.println(count("adbhuwhdiwjk883ihdn!@#@*bjx"));
+
+        System.out.println(getBinaryRep(123));
+
+        System.out.println(firstRepeated(new int[] { 112, 34, 56, 776, 44, 3, 112 }, 7));
+
+        System.out.println(ispar("{}{}{}{}{[][][[()({}{}{})]]}}"));
+
+        System.out.println(duplicates(new int[] { 12, 12, 12, 33, 23 }, 5));
+
         System.out.println(closeStrings("abc", "cba"));
 
         System.out.println(repeatedRows(new int[][] { { 0, 0 }, { 0, 1 } }, 0, 0));
+
+        System.out.println(winner(new String[] { "ab", "gv", "hb", "hj", "ju" }, 5));
 
         System.out.println(maxGold(1, 4, new int[][] { { 0, 0, 0, 0 } }));
 
@@ -1163,12 +1177,18 @@ public class LeetCode {
 
         System.out.println(smithNum(985));
 
+        TreeNode tn = new TreeNode(5);
+
+        System.out.println(findMode(tn));
+
         System.out.println(minNumber(new int[] { 2, 4, 6, 8, 12 }, 5));
 
+        System.out.println(minHeap(5, new int[][] { { 1, 2, 4, 6 }, { 7, 9, 9, 7, 8 } }));
+
+        System.out.println(countX(0, 10, 6));
+
         System.out.println(findPeaks(new int[] { 2, 4, 4 }));
-
         System.out.println(findPeaks(new int[] { 1, 4, 3, 8, 5 }));
-
         System.out.println(findPeaks(new int[] { 1, 1, 3 }));
 
         System.out.println(isAnagram("anagramm", "marganaa"));
@@ -1185,6 +1205,16 @@ public class LeetCode {
         System.out.println(findSubarrays(new int[] { 1, 2, 3, 4 }));
 
         System.out.println(entityParser("and I quote: &quot;...&quot;"));
+
+        System.out.println(maximumNumberOfStringPairs(new String[] { "ab", "gb", "hb" }));
+
+        System.out.println(removeTrailingZeros("6784567000000000"));
+
+        matrix(new int[][] { { 1, 6, 7, 98 }, { 78, 89, 3, 78 } });
+
+        System.out.println(divideString("fygygygyguygygygguyu", 5, 'o'));
+
+        System.out.println(findMedianSortedArrays(new int[] { 1, 7, 6, 8, 6, 6 }, new int[] { 6, 9, 7, 76, 98, 8 }));
 
         ParkingSystem parkingSystem = new ParkingSystem(1, 1, 0);
 
@@ -1212,8 +1242,9 @@ public class LeetCode {
                         '.'));
 
         System.out.println(numRabbits(new int[] { 10, 10, 10 }));
-
         System.out.println(numRabbits(new int[] { 1, 1, 2 }));
+
+        System.out.println(largestNumber(new int[] { 23, 45, 34, 23 }));
 
         System.out.println(
                 alertNames(
@@ -1236,8 +1267,6 @@ public class LeetCode {
                                 "15:00",
                         }));
 
-        System.out.println(largestNumber(new int[] { 23, 45, 34, 23 }));
-
         System.out.println(maxPower("leetcode"));
 
         System.out.println(vowelStrings(new String[] { "ab", "bc" }, 0, 2));
@@ -1252,10 +1281,8 @@ public class LeetCode {
 
         System.out.println(
                 maxDivScore(new int[] { 4, 7, 9, 3, 9 }, new int[] { 5, 2, 3 }));
-
         System.out.println(
                 maxDivScore(new int[] { 20, 14, 21, 10 }, new int[] { 5, 7, 5 }));
-
         System.out.println(
                 maxDivScore(new int[] { 4, 7, 9, 3, 9 }, new int[] { 10, 16 }));
 
