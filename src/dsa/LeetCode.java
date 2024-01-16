@@ -1306,7 +1306,36 @@ public class LeetCode {
         return sum;
     }
 
+    private static long[] minAnd2ndMin(long a[], long n) {
+        PriorityQueue<Long> pq = new PriorityQueue<>(Collections.reverseOrder());
+        for (int i = 0; i < n; i++) {
+            if (!pq.contains(a[i])) {
+                pq.add(a[i]);
+                if (pq.size() > 2) {
+                    pq.poll();
+                }
+            }
+        }
+
+        if (pq.size() < 2) {
+            return new long[] { -1 };
+        }
+
+        long min = pq.poll();
+        long smin = pq.poll();
+
+        if (min != smin) {
+            return new long[] { Math.min(min, smin), Math.max(min, smin) };
+        } else {
+            return new long[] { -1 };
+        }
+    }
+
     public static void main(String[] args) {
+
+        System.out.println(minAnd2ndMin(new long[] { 5, 2, 2, 2, 2 }, 5));
+        System.out.println(minAnd2ndMin(new long[] { 1, 2, 3, 4, 5 }, 5));
+        System.out.println(minAnd2ndMin(new long[] { 1, 2 }, 2));
 
         System.out.println(minValue("adcceec", 2));
         System.out.println(minValue("ac", 6));
