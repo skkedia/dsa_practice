@@ -1270,7 +1270,48 @@ public class LeetCode {
         System.out.println(Arrays.toString(arr));
     }
 
+    private static String modify(String s) {
+        Character c = s.charAt(0);
+        if (Character.isUpperCase(c)) {
+            return s.toUpperCase();
+        } else {
+            return s.toLowerCase();
+        }
+    }
+
+    private static int minValue(String s, int k) {
+        int[] arr = new int[26];
+        for (char c : s.toCharArray()) {
+            arr[c - 'a']++;
+        }
+        while (k > 0) {
+            int max = -1;
+            int tem = -1;
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                    tem = i;
+                }
+            }
+            if (tem != -1)
+                arr[tem]--;
+            k--;
+        }
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > 0) {
+                sum = sum + (arr[i] * arr[i]);
+            }
+        }
+        return sum;
+    }
+
     public static void main(String[] args) {
+
+        System.out.println(minValue("adcceec", 2));
+        System.out.println(minValue("ac", 6));
+
+        System.out.println(modify("Axbsnk"));
 
         segregate0and1(new int[] { 1, 1, 1, 1 }, 4);
         segregate0and1(new int[] { 0, 0, 1, 1, 0 }, 5);
