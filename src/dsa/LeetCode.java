@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Random;
 import java.util.Set;
 import java.util.Stack;
 import java.util.regex.Pattern;
@@ -89,6 +90,27 @@ class TreeNode {
         this.val = val;
         this.left = left;
         this.right = right;
+    }
+}
+
+class RandomizedSet {
+
+    Set<Integer> hash;
+
+    public RandomizedSet() {
+        hash = new HashSet<>();
+    }
+
+    public boolean insert(int val) {
+        return hash.add(val);
+    }
+
+    public boolean remove(int val) {
+        return hash.remove(val);
+    }
+
+    public int getRandom() {
+        return hash.toArray(new Integer[hash.size()])[new Random().nextInt(hash.size())];
     }
 }
 
@@ -1195,7 +1217,69 @@ public class LeetCode {
         return ans;
     }
 
+    private static String firstAlphabet(String s) {
+        String[] arr = s.split(" ");
+        String ans = "";
+        for (String ab : arr) {
+            ans += ab.charAt(0);
+        }
+        return ans;
+    }
+
+    private static String removeChars(String string1, String string2) {
+        for (int i = 0; i < string2.length(); i++) {
+            string1 = string1.replace(String.valueOf(string2.charAt(i)), "");
+        }
+        return string1;
+    }
+
+    private static String arrangeString(String s) {
+        char[] arr = new char[26];
+        int sum = 0;
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) {
+                sum += c - '0';
+            } else
+                arr[c - 'A']++;
+        }
+        String ans = "";
+        for (int i = 0; i < 26; i++) {
+            int tot = arr[i];
+            while (tot > 0) {
+                char c = (char) ('A' + i);
+                ans += c;
+                tot--;
+            }
+        }
+        return sum == 0 ? ans : ans + sum;
+    }
+
+    private static void segregate0and1(int[] arr, int n) {
+        int zeroP = 0;
+        int oneP = arr.length - 1;
+        while (oneP > zeroP) {
+            if (arr[zeroP] == 1) {
+                int temp = arr[zeroP];
+                arr[zeroP] = arr[oneP];
+                arr[oneP] = temp;
+                oneP--;
+            } else {
+                zeroP++;
+            }
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+
     public static void main(String[] args) {
+
+        segregate0and1(new int[] { 1, 1, 1, 1 }, 4);
+        segregate0and1(new int[] { 0, 0, 1, 1, 0 }, 5);
+
+        System.out.println(arrangeString("ACCBA10D2EW30"));
+
+        System.out.println(removeChars("geeksforgeeks", "gfg"));
+
+        System.out.println(firstAlphabet("Geeks For Geeks"));
 
         System.out.println(printNumber("geeksforgeeks", 10));
 
