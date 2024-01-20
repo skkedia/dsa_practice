@@ -1086,8 +1086,21 @@ public class LeetCode {
     }
 
     private static void rotateArr(int arr[], int d, int n) {
-        for (int i = 0; i < arr.length; i++) {
+        int start = 0;
+        int end = arr.length;
+        int rotateby = end % d;
+        rotate(arr, start, end - 1);
+        rotate(arr, start, rotateby - 1);
+        rotate(arr, rotateby, end - 1);
+    }
 
+    private static void rotate(int[] arr, int start, int end) {
+        while (end > start) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            end--;
+            start++;
         }
     }
 
@@ -1331,7 +1344,87 @@ public class LeetCode {
         }
     }
 
+    private static ArrayList<Integer> firstAndLast(int arr[], int n, int x) {
+        ArrayList<Integer> ans = new ArrayList<>();
+
+        int first = findIndex(arr, x, true);
+        if (first == -1) {
+            ans.add(-1);
+            return ans;
+        }
+        int last = findIndex(arr, x, false);
+        ans.add(first);
+        ans.add(last);
+        return ans;
+    }
+
+    private static int findIndex(int[] arr, int x, boolean flag) {
+        int start = 0;
+        int end = arr.length - 1;
+        int ans = -1;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (arr[mid] == x) {
+                ans = mid;
+                if (flag) {
+                    end = mid - 1;
+                } else {
+                    start = mid + 1;
+                }
+            } else if (arr[mid] > x) {
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return ans;
+    }
+
+    private static long totalFine(long n, long date, long car[], long fine[]) {
+        long totFine = 0l;
+
+        boolean iseven = date % 2 == 0;
+        for (int i = 0; i < car.length; i++) {
+            if (car[i] % 2 != 0 && iseven) {
+                totFine += fine[i];
+            } else if (car[i] % 2 == 0 && !iseven) {
+                totFine += fine[i];
+            }
+        }
+        return totFine;
+    }
+
+    private static String MaxZero(String arr[], int N) {
+        int ans = -1;
+        int max = -1;
+        for (String s : arr) {
+            int count = 0;
+            for (int i = 0; i < s.length(); i++) {
+                if (s.charAt(i) == '0') {
+                    count++;
+                }
+            }
+            Integer num = Integer.parseInt(s);
+            if (count > max && count != 0) {
+                ans = num;
+                max = count;
+            } else if (count == max) {
+                ans = Math.max(ans, num);
+            }
+
+        }
+        return String.valueOf(ans);
+    }
+
     public static void main(String[] args) {
+
+        System.out.println(MaxZero(new String[] { "90028", "30020" }, 2));
+
+        System.out.println(
+                totalFine(9, 3, new long[] { 2, 10, 4, 7, 4, 4, 5, 3, 8 }, new long[] { 2, 3, 10, 6, 4, 2, 5, 2, 8, }));
+        System.out.println(totalFine(5, 12, new long[] { 2375, 7682, 2325, 2352 }, new long[] { 250, 500, 350, 200 }));
+
+        System.out.println(firstAndLast(new int[] { 1, 3, 5, 5, 5, 5 }, 6, 5));
 
         System.out.println(minAnd2ndMin(new long[] { 5, 2, 2, 2, 2 }, 5));
         System.out.println(minAnd2ndMin(new long[] { 1, 2, 3, 4, 5 }, 5));
