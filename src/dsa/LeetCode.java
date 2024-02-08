@@ -1416,7 +1416,120 @@ public class LeetCode {
         return String.valueOf(ans);
     }
 
+    private static ArrayList<Integer> leaders2(int[] arr, int n) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            } else {
+                ans.add(max);
+                max = arr[i];
+            }
+        }
+        return ans;
+    }
+
+    private static boolean metaStrings(String s1, String s2) {
+        if (s1.equals(s2) || !(s1.length() == (s2.length()))) {
+            return false;
+        }
+        int[] arr = new int[26];
+
+        for (int i = 0; i < s1.length(); i++) {
+            arr[s1.charAt(i) - 'a']++;
+            arr[s2.charAt(i) - 'a']--;
+        }
+        for (int i = 0; i < 26; i++) {
+            if (arr[i] != 0)
+                return false;
+
+        }
+        return true;
+    }
+
+    private static int extractMaximum(String s) {
+        int ans = -1;
+
+        for (int i = 0; i < s.length(); i++) {
+            StringBuilder sb = new StringBuilder();
+            if (Character.isDigit(s.charAt(i))) {
+                while (i < s.length() && Character.isDigit(s.charAt(i))) {
+                    sb.append(s.charAt(i));
+                    i++;
+                }
+                ans = Math.max(ans, Integer.parseInt(sb.toString()));
+            }
+        }
+        return ans;
+    }
+
+    private static boolean checkPangram(String s) {
+        int[] arr = new int[26];
+        s = s.toLowerCase();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c - 'a' >= 0 && c - 'a' < 26) {
+                arr[c - 'a']++;
+            }
+        }
+        for (int i = 0; i < 26; i++) {
+            if (arr[i] == 0)
+                return false;
+        }
+        return true;
+    }
+
+    private static boolean isPalindrome(String s) {
+        if (s == null)
+            return true;
+        int left = 0;
+        int right = s.length() - 1;
+
+        while (left < right) {
+            if (!checkChar(s.charAt(left))) {
+                left++;
+            }
+            if (!checkChar(s.charAt(right))) {
+                right--;
+            }
+            if (lower(s.charAt(right)) != lower(s.charAt(left))) {
+                return false;
+            } else {
+                left++;
+                right--;
+            }
+        }
+        return true;
+    }
+
+    private static char lower(char l) {
+        if ((l >= 'a' && l <= 'z') || (l >= '0' && l <= '9'))
+            return l;
+        return (char) (l + 32);
+    }
+
+    private static boolean checkChar(char c) {
+        if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')) {
+            return true;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
+        Math.pow(10, 10);
+
+        System.out.println(isPalindrome("A man, a plan, a canal: Panama"));
+
+        System.out.println(checkPangram("Bawds jog, flick quartz, vex nymph"));
+
+        System.out.println(extractMaximum("100klh564abc365bg"));
+
+        System.out.println(metaStrings("abcd", "badc"));
+
+        System.out.println(metaStrings("geeks", "exeks"));
+
+        System.out.println(leaders2(new int[] { 16, 17, 4, 3, 5, 2 }, 6));
 
         System.out.println(MaxZero(new String[] { "90028", "30020" }, 2));
 
