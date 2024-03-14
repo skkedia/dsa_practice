@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -114,7 +115,7 @@ class RandomizedSet {
     }
 }
 
-public class LeetCode {
+public class LeetCode implements Inter, Some {
 
     private static int canBeTypedWords(String text, String brokenLetters) {
         String[] strarr = text.split(" ");
@@ -1516,7 +1517,228 @@ public class LeetCode {
         return false;
     }
 
+    private static int ans = 0;
+
+    private static long numberOfPath(int n, int k, int[][] arr) {
+        ans = 0;
+        int sum = 0;
+        findNoPaths(arr, 0, 0, sum, k);
+        return ans;
+    }
+
+    private static void findNoPaths(int[][] arr, int row, int col, int sum, int k) {
+        sum += arr[row][col];
+        if (sum > k)
+            return;
+        if (row == arr.length - 1 && col == arr.length - 1) {
+            if (k == sum)
+                ans++;
+            return;
+        }
+        if (col < arr.length - 1)
+            findNoPaths(arr, row, col + 1, sum, k);
+        if (row < arr.length - 1)
+            findNoPaths(arr, row + 1, col, sum, k);
+    }
+
+    private static int countSubstrings(String s) {
+        ans = 0;
+        for (int i = 0; i < s.length(); i++) {
+            findPalindromes(s, i, i);
+            findPalindromes(s, i, i + 1);
+        }
+        return ans;
+    }
+
+    private static void findPalindromes(String s, int start, int end) {
+        while (start >= 0 && end < s.length() && s.charAt(start) == s.charAt(end)) {
+            start--;
+            end++;
+            ans++;
+        }
+    }
+
+    private static int calculate(String s) {
+        Stack<Integer> stk = new Stack<>();
+        int currentNumber = 0;
+        char op = '+';
+        for (int i = 0; i < s.length(); i++) {
+            char curChar = s.charAt(i);
+            if (Character.isDigit(curChar)) {
+                currentNumber = currentNumber * 10 + (curChar - '0');
+            }
+            if (!Character.isDigit(curChar) && !Character.isWhitespace(curChar) || i == s.length() - 1) {
+                if (op == '-')
+                    stk.push(-currentNumber);
+                if (op == '+')
+                    stk.push(currentNumber);
+                if (op == '/')
+                    stk.push(stk.pop() / currentNumber);
+                if (op == '*')
+                    stk.push(stk.pop() * currentNumber);
+                currentNumber = 0;
+                op = curChar;
+            }
+        }
+        int ans = 0;
+        while (!stk.isEmpty()) {
+            ans += stk.pop();
+        }
+        return ans;
+    }
+
+    class Solution {
+        public static int calculate(String s) {
+            int ans = 0;
+            Stack<String> stk = new Stack<>();
+            int curNum = 0;
+            char op = '+';
+            for (int i = 0; i < s.length(); i++) {
+                char curChar = s.charAt(i);
+                if (Character.isDigit(curChar)) {
+                    curNum = curNum * 10 + (curChar - '0');
+                }
+                if (!Character.isDigit(curChar) && !Character.isWhitespace(curChar) || i == s.length() - 1) {
+                    if (curChar == ')') {
+                        while (!stk.isEmpty() && !stk.peek().equals("(")) {
+                            ans += Integer.parseInt(stk.pop());
+                        }
+                        stk.pop();
+                        stk.push(String.valueOf(ans));
+                        continue;
+                    }
+                    if (op == '(') {
+                        stk.push(String.valueOf(curNum));
+                        curNum = 0;
+                        stk.push("(");
+                    }
+                    if (op == '-')
+                        stk.push(String.valueOf(-curNum));
+                    if (op == '+')
+                        stk.push(String.valueOf(curNum));
+                    if (op == '*')
+                        stk.push(String.valueOf(Integer.parseInt(stk.pop()) * curNum));
+                    if (op == '/')
+                        stk.push(String.valueOf(Integer.parseInt(stk.pop()) / curNum));
+                    op = curChar;
+                    curNum = 0;
+                }
+            }
+            ans = 0;
+            while (!stk.isEmpty()) {
+                if (stk.peek() == "(") {
+                    stk.pop();
+                    continue;
+                }
+                // if (op == '/') {
+                // ans = Integer.parseInt(stk.pop()) / ans;
+                // }
+                // if (op == '*') {
+                // ans = Integer.parseInt(stk.pop()) * ans;
+                // }
+                // op = '+';
+                ans += Integer.parseInt(stk.pop());
+            }
+            return ans;
+        }
+    }
+
+    // [[2,-1,2,-1,2],[1,0,-1,2,-1],[2,-1,-1,-1,2],[2,1,2,-1,2],[0,1,0,0,0],[0,0,0,0,-1],[2,-1,2,2,0],[0,1,0,2,2],[2,2,0,1,-1]]
+    public static int[][] modifiedMatrix(int[][] matrix) {
+        int[][] ans = new int[matrix.length][matrix[0].length];
+
+        for (int i = 0; i < 51; i++) {
+            int tmp = -1;
+            List<Integer> idx = new ArrayList<>();
+            for (int j = 0; j < 51; j++) {
+                if (isSafe(i, j, matrix.length, matrix[0].length)) {
+                    ans[j][i] = matrix[j][i];
+                    if (matrix[j][i] == -1) {
+                        idx.add(j);
+                        continue;
+                    }
+                    tmp = Math.max(tmp, matrix[j][i]);
+                }
+
+            }
+            for (Integer x : idx)
+                ans[x][i] = tmp;
+        }
+
+        return ans;
+    }
+
+    private static boolean isSafe(int i, int j, int rlength, int clength) {
+        return i < clength && j < rlength;
+    }
+
+    private static Set<Integer> hs = new LinkedHashSet<>();
+    private static Map<Integer, Integer> mp = new HashMap<>();
+
+    private static ArrayList<Integer> recamanSequence(int n) {
+
+        hs.add(0);
+        mp.put(0, 0);
+        for (int i = 1; i < n; i++) {
+            int tmp = mp.get(i - 1) - i;
+            if (tmp < 1 || hs.contains(tmp)) {
+                tmp = mp.get(i - 1) + i;
+            }
+            hs.add(tmp);
+            mp.put(i, tmp);
+        }
+        ArrayList<Integer> ans = new ArrayList<>();
+        ans.addAll(hs);
+        return ans;
+    }
+
+    private static int maxProduct(int arr[], int n) {
+        // code here
+        Queue<Integer> q = new PriorityQueue<>(Collections.reverseOrder());
+        for (int i : arr) {
+            q.add(i);
+            if (q.size() > 2) {
+                q.poll();
+            }
+        }
+        return q.poll() * q.poll();
+    }
+
+    public static int maxProfit(int n, int[] price) {
+        // code here
+        int[] profits = new int[n];
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                profits[i] = Math.max(profits[i], price[j] - price[i]);
+            }
+        }
+        return 0;
+    }
+
     public static void main(String[] args) {
+
+        System.out.println(maxProfit(6, new int[] { 10, 22, 5, 75, 65, 80 }));
+
+        System.out.println(maxProduct(new int[] { 1, 100, 42, 4, 23 }, 5));
+
+        System.out.println(recamanSequence(5));
+
+        System.out.println(Arrays.toString(modifiedMatrix(new int[][] { { 2, -1, 2, -1, 2 }, { 1, 0, -1, 2, -1 },
+                { 2, -1, -1, -1, 2 },
+                { 2, 1, 2, -1, 2 }, { 0, 1, 0, 0, 0 }, { 0, 0, 0, 0, -1 }, { 2, -1, 2, 2, 0 }, { 0, 1, 0, 2, 2 },
+                { 2, 2, 0, 1, -1 } })));
+
+        System.out.println(modifiedMatrix(new int[][] { { 1, 2, -1 }, { 4, -1, 6 }, { 7, 8, 9 } }));
+
+        System.out.println(Solution.calculate("(1+(2+3+4)-5)+(6+7)"));
+
+        System.out.println(Solution.calculate("(-3+8)+100"));
+
+        System.out.println(calculate("-3+8      * 100"));
+        System.out.println(countSubstrings("abbbbdefg"));
+
+        System.out.println(numberOfPath(3, 12, new int[][] { { 1, 2, 3 }, { 4, 6, 5 }, { 3, 2, 1 } }));
+
         Math.pow(10, 10);
 
         System.out.println(isPalindrome("A man, a plan, a canal: Panama"));
@@ -1731,5 +1953,10 @@ public class LeetCode {
         System.out.println(canBeTypedWords("abc de", "abc"));
         System.out.println(canBeTypedWords("world hello", "ad"));
 
+    }
+
+    @Override
+    public void something() {
+        throw new UnsupportedOperationException("Unimplemented method 'something'");
     }
 }
