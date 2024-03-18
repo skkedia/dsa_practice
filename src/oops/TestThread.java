@@ -1,4 +1,4 @@
-package hackerrank;
+package oops;
 
 class SampleDemo implements Runnable {
 
@@ -43,7 +43,7 @@ public class TestThread {
         SampleDemo B = new SampleDemo("B");
 
         Demo th = new Demo();
-        // th.start();
+        th.run();
 
         Thread tt = new Thread(new Runnable() {
             public void run() {

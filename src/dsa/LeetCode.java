@@ -52,6 +52,7 @@ class ParkingSystem {
     }
 }
 
+
 class OrderedStream {
 
     int ptr = 0;
@@ -74,14 +75,14 @@ class OrderedStream {
     }
 }
 
+
 class TreeNode {
 
     int val;
     TreeNode left;
     TreeNode right;
 
-    public TreeNode() {
-    }
+    public TreeNode() {}
 
     public TreeNode(int val) {
         this.val = val;
@@ -93,6 +94,7 @@ class TreeNode {
         this.right = right;
     }
 }
+
 
 class RandomizedSet {
 
@@ -114,6 +116,7 @@ class RandomizedSet {
         return hash.toArray(new Integer[hash.size()])[new Random().nextInt(hash.size())];
     }
 }
+
 
 public class LeetCode implements Inter, Some {
 
@@ -158,8 +161,7 @@ public class LeetCode implements Inter, Some {
         int ans = Integer.MAX_VALUE;
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
-            map.put(
-                    Math.abs(nums[i] - 0),
+            map.put(Math.abs(nums[i] - 0),
                     map.getOrDefault(Math.abs(nums[i] - 0), Integer.MIN_VALUE) > nums[i]
                             ? map.getOrDefault(Math.abs(nums[i] - 0), Integer.MIN_VALUE)
                             : nums[i]);
@@ -341,16 +343,10 @@ public class LeetCode implements Inter, Some {
         for (int i = left; i <= right; i++) {
             String s = words[i];
             Integer len = s.length() - 1;
-            if ((s.charAt(0) == 'a' ||
-                    s.charAt(0) == 'e' ||
-                    s.charAt(0) == 'i' ||
-                    s.charAt(0) == 'o' ||
-                    s.charAt(0) == 'u') &&
-                    (s.charAt(len) == 'a' ||
-                            s.charAt(len) == 'e' ||
-                            s.charAt(len) == 'i' ||
-                            s.charAt(len) == 'o' ||
-                            s.charAt(len) == 'u')) {
+            if ((s.charAt(0) == 'a' || s.charAt(0) == 'e' || s.charAt(0) == 'i'
+                    || s.charAt(0) == 'o' || s.charAt(0) == 'u')
+                    && (s.charAt(len) == 'a' || s.charAt(len) == 'e' || s.charAt(len) == 'i'
+                            || s.charAt(len) == 'o' || s.charAt(len) == 'u')) {
                 count++;
             }
         }
@@ -406,9 +402,7 @@ public class LeetCode implements Inter, Some {
     }
 
     private static Integer getTime(String time) {
-        return (Integer.parseInt(time.split(":")[0]) *
-                60 +
-                Integer.parseInt(time.split(":")[1]));
+        return (Integer.parseInt(time.split(":")[0]) * 60 + Integer.parseInt(time.split(":")[1]));
     }
 
     private static String largestNumber(int[] nums) {
@@ -432,9 +426,7 @@ public class LeetCode implements Inter, Some {
         return rabbit;
     }
 
-    private static List<String> splitWordsBySeparator(
-            List<String> words,
-            char separator) {
+    private static List<String> splitWordsBySeparator(List<String> words, char separator) {
         List<String> ans = new LinkedList<>();
 
         for (String w : words) {
@@ -660,13 +652,8 @@ public class LeetCode implements Inter, Some {
     }
 
     private static String entityParser(String text) {
-        return text
-                .replaceAll("&quot;", "\"")
-                .replaceAll("&apos;", "'")
-                .replaceAll("&amp.", "&")
-                .replaceAll("&gt;", ">")
-                .replaceAll("&lt;", "<")
-                .replaceAll("&frasl;", "/");
+        return text.replaceAll("&quot;", "\"").replaceAll("&apos;", "'").replaceAll("&amp.", "&")
+                .replaceAll("&gt;", ">").replaceAll("&lt;", "<").replaceAll("&frasl;", "/");
     }
 
     private static boolean findSubarrays(int[] nums) {
@@ -881,10 +868,8 @@ public class LeetCode implements Inter, Some {
                 } else if (i == M.length - 1 && j + 1 < m) {
                     dp[i][j] = M[i][j] + Math.max(dp[i][j + 1], dp[i - 1][j + 1]);
                 } else if (j + 1 < m && i + 1 < n && i - 1 > -1) {
-                    dp[i][j] = M[i][j] +
-                            Math.max(
-                                    dp[i][j + 1],
-                                    Math.max(dp[i + 1][j + 1], dp[i - 1][j + 1]));
+                    dp[i][j] = M[i][j]
+                            + Math.max(dp[i][j + 1], Math.max(dp[i + 1][j + 1], dp[i - 1][j + 1]));
                 }
             }
         }
@@ -1044,11 +1029,9 @@ public class LeetCode implements Inter, Some {
     }
 
     private static String is_palindrome(int n) {
-        return String
-                .valueOf(n)
-                .equals(new StringBuilder(String.valueOf(n)).reverse().toString())
-                        ? "Yes"
-                        : "No";
+        return String.valueOf(n).equals(new StringBuilder(String.valueOf(n)).reverse().toString())
+                ? "Yes"
+                : "No";
     }
 
     private static ArrayList<Integer> leaders(int arr[], int n) {
@@ -1332,16 +1315,16 @@ public class LeetCode implements Inter, Some {
         }
 
         if (pq.size() < 2) {
-            return new long[] { -1 };
+            return new long[] {-1};
         }
 
         long min = pq.poll();
         long smin = pq.poll();
 
         if (min != smin) {
-            return new long[] { Math.min(min, smin), Math.max(min, smin) };
+            return new long[] {Math.min(min, smin), Math.max(min, smin)};
         } else {
-            return new long[] { -1 };
+            return new long[] {-1};
         }
     }
 
@@ -1567,7 +1550,8 @@ public class LeetCode implements Inter, Some {
             if (Character.isDigit(curChar)) {
                 currentNumber = currentNumber * 10 + (curChar - '0');
             }
-            if (!Character.isDigit(curChar) && !Character.isWhitespace(curChar) || i == s.length() - 1) {
+            if (!Character.isDigit(curChar) && !Character.isWhitespace(curChar)
+                    || i == s.length() - 1) {
                 if (op == '-')
                     stk.push(-currentNumber);
                 if (op == '+')
@@ -1598,7 +1582,8 @@ public class LeetCode implements Inter, Some {
                 if (Character.isDigit(curChar)) {
                     curNum = curNum * 10 + (curChar - '0');
                 }
-                if (!Character.isDigit(curChar) && !Character.isWhitespace(curChar) || i == s.length() - 1) {
+                if (!Character.isDigit(curChar) && !Character.isWhitespace(curChar)
+                        || i == s.length() - 1) {
                     if (curChar == ')') {
                         while (!stk.isEmpty() && !stk.peek().equals("(")) {
                             ans += Integer.parseInt(stk.pop());
@@ -1661,6 +1646,7 @@ public class LeetCode implements Inter, Some {
                 }
 
             }
+
             for (Integer x : idx)
                 ans[x][i] = tmp;
         }
@@ -1704,8 +1690,7 @@ public class LeetCode implements Inter, Some {
         return q.poll() * q.poll();
     }
 
-    public static int maxProfit(int n, int[] price) {
-        // code here
+    private static int maxProfit(int n, int[] price) {
         int[] profits = new int[n];
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
@@ -1715,20 +1700,120 @@ public class LeetCode implements Inter, Some {
         return 0;
     }
 
+    private static int countPairs(LinkedList<Integer> head1, LinkedList<Integer> head2, int x) {
+        int ans = 0;
+
+        Set<Integer> hs = new HashSet<>();
+
+        for (Integer i : head1) {
+            hs.add(i);
+        }
+        for (Integer i : head2) {
+            if (hs.contains(x - i)) {
+                ans++;
+            }
+        }
+        return ans;
+    }
+
+    private static int numIslands(char[][] grid) {
+        int count = 0;
+        int n = grid.length;
+        int m = grid[0].length;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == '1') {
+                    numberOfIsland(grid, i, j, n, m);
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    private static void numberOfIsland(char[][] grid, int r, int c, int n, int m) {
+        if (grid[r][c] == '2')
+            return;
+        int[][] dir = new int[][] {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        grid[r][c] = '2';
+        for (int[] d : dir) {
+            int i = r + d[0];
+            int j = c + d[1];
+            if (GraphUtils.isSafe(i, j, n, m) && grid[i][j] == '1') {
+                numberOfIsland(grid, i, j, n, m);
+            }
+        }
+    }
+
+    private static int cur = 0;
+
+    private static int maxAreaOfIsland(int[][] grid) {
+        int area = 0;
+        int n = grid.length;
+        int m = grid[0].length;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == 1) {
+                    cur = 1;
+                    getArea(grid, i, j, n, m);
+                }
+                area = Math.max(area, cur);
+            }
+        }
+        return area;
+    }
+
+    private static void getArea(int[][] grid, int r, int c, int n, int m) {
+        if (grid[r][c] != 1)
+            return;
+        grid[r][c] = 2;
+        int[][] dir = new int[][] {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        for (int[] d : dir) {
+            int i = r + d[0];
+            int j = c + d[1];
+            if (GraphUtils.isSafe(i, j, n, m) && grid[i][j] == 1) {
+                cur++;
+                getArea(grid, i, j, n, m);
+            }
+        }
+    }
+
+    public void solve(char[][] board) {
+
+
+    }
+
     public static void main(String[] args) {
+        /**
+         * [["1","0","1","1","1"], ["1","0","1","0","1"], ["1","1","1","0","1"]]
+         */
 
-        System.out.println(maxProfit(6, new int[] { 10, 22, 5, 75, 65, 80 }));
+        System.out.println(maxAreaOfIsland(new int[][] {{0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0}, {0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0}, {0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}}));
 
-        System.out.println(maxProduct(new int[] { 1, 100, 42, 4, 23 }, 5));
+        System.out.println(numIslands(new char[][] {{'1', '0', '1', '1', '1'},
+                {'1', '0', '1', '0', '1'}, {'1', '1', '1', '0', '1'}}));
+
+        System.out.println(numIslands(new char[][] {{'1', '1', '1', '1', '0'},
+                {'1', '1', '0', '1', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '0', '0', '0'}}));
+
+        System.out.println(countPairs(new LinkedList<Integer>(), new LinkedList<Integer>(), 10));
+
+        System.out.println(maxProfit(6, new int[] {10, 22, 5, 75, 65, 80}));
+
+        System.out.println(maxProduct(new int[] {1, 100, 42, 4, 23}, 5));
 
         System.out.println(recamanSequence(5));
 
-        System.out.println(Arrays.toString(modifiedMatrix(new int[][] { { 2, -1, 2, -1, 2 }, { 1, 0, -1, 2, -1 },
-                { 2, -1, -1, -1, 2 },
-                { 2, 1, 2, -1, 2 }, { 0, 1, 0, 0, 0 }, { 0, 0, 0, 0, -1 }, { 2, -1, 2, 2, 0 }, { 0, 1, 0, 2, 2 },
-                { 2, 2, 0, 1, -1 } })));
+        System.out.println(Arrays.toString(modifiedMatrix(new int[][] {{2, -1, 2, -1, 2},
+                {1, 0, -1, 2, -1}, {2, -1, -1, -1, 2}, {2, 1, 2, -1, 2}, {0, 1, 0, 0, 0},
+                {0, 0, 0, 0, -1}, {2, -1, 2, 2, 0}, {0, 1, 0, 2, 2}, {2, 2, 0, 1, -1}})));
 
-        System.out.println(modifiedMatrix(new int[][] { { 1, 2, -1 }, { 4, -1, 6 }, { 7, 8, 9 } }));
+        System.out.println(modifiedMatrix(new int[][] {{1, 2, -1}, {4, -1, 6}, {7, 8, 9}}));
 
         System.out.println(Solution.calculate("(1+(2+3+4)-5)+(6+7)"));
 
@@ -1737,7 +1822,7 @@ public class LeetCode implements Inter, Some {
         System.out.println(calculate("-3+8      * 100"));
         System.out.println(countSubstrings("abbbbdefg"));
 
-        System.out.println(numberOfPath(3, 12, new int[][] { { 1, 2, 3 }, { 4, 6, 5 }, { 3, 2, 1 } }));
+        System.out.println(numberOfPath(3, 12, new int[][] {{1, 2, 3}, {4, 6, 5}, {3, 2, 1}}));
 
         Math.pow(10, 10);
 
@@ -1751,27 +1836,28 @@ public class LeetCode implements Inter, Some {
 
         System.out.println(metaStrings("geeks", "exeks"));
 
-        System.out.println(leaders2(new int[] { 16, 17, 4, 3, 5, 2 }, 6));
+        System.out.println(leaders2(new int[] {16, 17, 4, 3, 5, 2}, 6));
 
-        System.out.println(MaxZero(new String[] { "90028", "30020" }, 2));
+        System.out.println(MaxZero(new String[] {"90028", "30020"}, 2));
 
-        System.out.println(
-                totalFine(9, 3, new long[] { 2, 10, 4, 7, 4, 4, 5, 3, 8 }, new long[] { 2, 3, 10, 6, 4, 2, 5, 2, 8, }));
-        System.out.println(totalFine(5, 12, new long[] { 2375, 7682, 2325, 2352 }, new long[] { 250, 500, 350, 200 }));
+        System.out.println(totalFine(9, 3, new long[] {2, 10, 4, 7, 4, 4, 5, 3, 8},
+                new long[] {2, 3, 10, 6, 4, 2, 5, 2, 8,}));
+        System.out.println(totalFine(5, 12, new long[] {2375, 7682, 2325, 2352},
+                new long[] {250, 500, 350, 200}));
 
-        System.out.println(firstAndLast(new int[] { 1, 3, 5, 5, 5, 5 }, 6, 5));
+        System.out.println(firstAndLast(new int[] {1, 3, 5, 5, 5, 5}, 6, 5));
 
-        System.out.println(minAnd2ndMin(new long[] { 5, 2, 2, 2, 2 }, 5));
-        System.out.println(minAnd2ndMin(new long[] { 1, 2, 3, 4, 5 }, 5));
-        System.out.println(minAnd2ndMin(new long[] { 1, 2 }, 2));
+        System.out.println(minAnd2ndMin(new long[] {5, 2, 2, 2, 2}, 5));
+        System.out.println(minAnd2ndMin(new long[] {1, 2, 3, 4, 5}, 5));
+        System.out.println(minAnd2ndMin(new long[] {1, 2}, 2));
 
         System.out.println(minValue("adcceec", 2));
         System.out.println(minValue("ac", 6));
 
         System.out.println(modify("Axbsnk"));
 
-        segregate0and1(new int[] { 1, 1, 1, 1 }, 4);
-        segregate0and1(new int[] { 0, 0, 1, 1, 0 }, 5);
+        segregate0and1(new int[] {1, 1, 1, 1}, 4);
+        segregate0and1(new int[] {0, 0, 1, 1, 0}, 5);
 
         System.out.println(arrangeString("ACCBA10D2EW30"));
 
@@ -1785,23 +1871,23 @@ public class LeetCode implements Inter, Some {
 
         System.out.println(convertfive(1005));
 
-        System.out.println(transitionPoint(new int[] { 0, 0, 1, 1, 1 }, 5));
+        System.out.println(transitionPoint(new int[] {0, 0, 1, 1, 1}, 5));
 
         System.out.println(reverseWords("ac.ss.dd.ww.sdd"));
 
-        System.out.println(findWinners(new int[][] { { 1, 2 }, { 3, 5 }, { 2, 4 } }));
+        System.out.println(findWinners(new int[][] {{1, 2}, {3, 5}, {2, 4}}));
 
-        System.out.println(max_courses(2, 19, new int[] { 10, 9 }));
+        System.out.println(max_courses(2, 19, new int[] {10, 9}));
 
-        rotateArr(new int[] { 1, 2, 3, 4, 5, 6 }, 4, 6);
+        rotateArr(new int[] {1, 2, 3, 4, 5, 6}, 4, 6);
 
-        System.out.println(countZeroes(new int[] { 0, 0, 0, 1, 1, 1, 1 }, 7));
+        System.out.println(countZeroes(new int[] {0, 0, 0, 1, 1, 1, 1}, 7));
 
-        System.out.println(findPair(new int[] { 2, 80, 30, 34 }, 4, 78));
+        System.out.println(findPair(new int[] {2, 80, 30, 34}, 4, 78));
 
-        System.out.println(leaders(new int[] { 1, 1, 1, 1, 1, 1 }, 6));
+        System.out.println(leaders(new int[] {1, 1, 1, 1, 1, 1}, 6));
 
-        System.out.println(max_courses(11, 10, new int[] { 10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }));
+        System.out.println(max_courses(11, 10, new int[] {10, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}));
 
         System.out.println(is_palindrome(555));
 
@@ -1809,19 +1895,19 @@ public class LeetCode implements Inter, Some {
 
         System.out.println(getBinaryRep(123));
 
-        System.out.println(firstRepeated(new int[] { 112, 34, 56, 776, 44, 3, 112 }, 7));
+        System.out.println(firstRepeated(new int[] {112, 34, 56, 776, 44, 3, 112}, 7));
 
         System.out.println(ispar("{}{}{}{}{[][][[()({}{}{})]]}}"));
 
-        System.out.println(duplicates(new int[] { 12, 12, 12, 33, 23 }, 5));
+        System.out.println(duplicates(new int[] {12, 12, 12, 33, 23}, 5));
 
         System.out.println(closeStrings("abc", "cba"));
 
-        System.out.println(repeatedRows(new int[][] { { 0, 0 }, { 0, 1 } }, 0, 0));
+        System.out.println(repeatedRows(new int[][] {{0, 0}, {0, 1}}, 0, 0));
 
-        System.out.println(winner(new String[] { "ab", "gv", "hb", "hj", "ju" }, 5));
+        System.out.println(winner(new String[] {"ab", "gv", "hb", "hj", "ju"}, 5));
 
-        System.out.println(maxGold(1, 4, new int[][] { { 0, 0, 0, 0 } }));
+        System.out.println(maxGold(1, 4, new int[][] {{0, 0, 0, 0}}));
 
         System.out.println(factors(985));
 
@@ -1831,19 +1917,19 @@ public class LeetCode implements Inter, Some {
 
         System.out.println(findMode(tn));
 
-        System.out.println(minNumber(new int[] { 2, 4, 6, 8, 12 }, 5));
+        System.out.println(minNumber(new int[] {2, 4, 6, 8, 12}, 5));
 
-        System.out.println(minHeap(5, new int[][] { { 1, 2, 4, 6 }, { 7, 9, 9, 7, 8 } }));
+        System.out.println(minHeap(5, new int[][] {{1, 2, 4, 6}, {7, 9, 9, 7, 8}}));
 
         System.out.println(countX(0, 10, 6));
 
-        System.out.println(findPeaks(new int[] { 2, 4, 4 }));
-        System.out.println(findPeaks(new int[] { 1, 4, 3, 8, 5 }));
-        System.out.println(findPeaks(new int[] { 1, 1, 3 }));
+        System.out.println(findPeaks(new int[] {2, 4, 4}));
+        System.out.println(findPeaks(new int[] {1, 4, 3, 8, 5}));
+        System.out.println(findPeaks(new int[] {1, 1, 3}));
 
         System.out.println(isAnagram("anagramm", "marganaa"));
 
-        System.out.println(maxScoreSightseeingPair(new int[] { 8, 1, 5, 2, 6 }));
+        System.out.println(maxScoreSightseeingPair(new int[] {8, 1, 5, 2, 6}));
 
         OrderedStream os = new OrderedStream(5);
         System.out.println(os.insert(3, "ccccc"));
@@ -1852,19 +1938,20 @@ public class LeetCode implements Inter, Some {
         System.out.println(os.insert(5, "eeeee"));
         System.out.println(os.insert(4, "ddddd"));
 
-        System.out.println(findSubarrays(new int[] { 1, 2, 3, 4 }));
+        System.out.println(findSubarrays(new int[] {1, 2, 3, 4}));
 
         System.out.println(entityParser("and I quote: &quot;...&quot;"));
 
-        System.out.println(maximumNumberOfStringPairs(new String[] { "ab", "gb", "hb" }));
+        System.out.println(maximumNumberOfStringPairs(new String[] {"ab", "gb", "hb"}));
 
         System.out.println(removeTrailingZeros("6784567000000000"));
 
-        matrix(new int[][] { { 1, 6, 7, 98 }, { 78, 89, 3, 78 } });
+        matrix(new int[][] {{1, 6, 7, 98}, {78, 89, 3, 78}});
 
         System.out.println(divideString("fygygygyguygygygguyu", 5, 'o'));
 
-        System.out.println(findMedianSortedArrays(new int[] { 1, 7, 6, 8, 6, 6 }, new int[] { 6, 9, 7, 76, 98, 8 }));
+        System.out.println(findMedianSortedArrays(new int[] {1, 7, 6, 8, 6, 6},
+                new int[] {6, 9, 7, 76, 98, 8}));
 
         ParkingSystem parkingSystem = new ParkingSystem(1, 1, 0);
 
@@ -1872,13 +1959,11 @@ public class LeetCode implements Inter, Some {
         System.out.println(parkingSystem.addCar(2));
         System.out.println(parkingSystem.addCar(3));
 
-        System.out.println(
-                nextGreaterElement(new int[] { 4, 1, 2 }, new int[] { 1, 3, 4, 2 }));
+        System.out.println(nextGreaterElement(new int[] {4, 1, 2}, new int[] {1, 3, 4, 2}));
 
         System.out.println(strStr("assdd", "a"));
 
-        System.out.println(
-                findWords(new String[] { "Hello", "Alaska", "Dad", "Peace" }));
+        System.out.println(findWords(new String[] {"Hello", "Alaska", "Dad", "Peace"}));
 
         System.out.println(findItinerary(null));
 
@@ -1887,68 +1972,46 @@ public class LeetCode implements Inter, Some {
         System.out.println(smallestString("adddwdwdwd"));
 
         System.out.println(
-                splitWordsBySeparator(
-                        Arrays.asList("one.two.three", "four.five", "six"),
-                        '.'));
+                splitWordsBySeparator(Arrays.asList("one.two.three", "four.five", "six"), '.'));
 
-        System.out.println(numRabbits(new int[] { 10, 10, 10 }));
-        System.out.println(numRabbits(new int[] { 1, 1, 2 }));
+        System.out.println(numRabbits(new int[] {10, 10, 10}));
+        System.out.println(numRabbits(new int[] {1, 1, 2}));
 
-        System.out.println(largestNumber(new int[] { 23, 45, 34, 23 }));
+        System.out.println(largestNumber(new int[] {23, 45, 34, 23}));
 
-        System.out.println(
-                alertNames(
-                        new String[] {
-                                "daniel",
-                                "daniel",
-                                "daniel",
-                                "luis",
-                                "luis",
-                                "luis",
-                                "luis",
-                        },
-                        new String[] {
-                                "10:00",
-                                "10:40",
-                                "11:00",
-                                "09:00",
-                                "11:00",
-                                "13:00",
-                                "15:00",
-                        }));
+        System.out.println(alertNames(
+                new String[] {"daniel", "daniel", "daniel", "luis", "luis", "luis", "luis",},
+                new String[] {"10:00", "10:40", "11:00", "09:00", "11:00", "13:00", "15:00",}));
 
         System.out.println(maxPower("leetcode"));
 
-        System.out.println(vowelStrings(new String[] { "ab", "bc" }, 0, 2));
+        System.out.println(vowelStrings(new String[] {"ab", "bc"}, 0, 2));
 
         System.out.println(reverseOnlyLetters("ab-cd"));
 
         System.out.println(finalString("poiinter"));
 
-        System.out.println(minimumOperations(new int[] { 1, 2, 3, 4, 5 }));
+        System.out.println(minimumOperations(new int[] {1, 2, 3, 4, 5}));
 
         System.out.println(pivotInteger(8));
 
-        System.out.println(
-                maxDivScore(new int[] { 4, 7, 9, 3, 9 }, new int[] { 5, 2, 3 }));
-        System.out.println(
-                maxDivScore(new int[] { 20, 14, 21, 10 }, new int[] { 5, 7, 5 }));
-        System.out.println(
-                maxDivScore(new int[] { 4, 7, 9, 3, 9 }, new int[] { 10, 16 }));
+        System.out.println(maxDivScore(new int[] {4, 7, 9, 3, 9}, new int[] {5, 2, 3}));
+        System.out.println(maxDivScore(new int[] {20, 14, 21, 10}, new int[] {5, 7, 5}));
+        System.out.println(maxDivScore(new int[] {4, 7, 9, 3, 9}, new int[] {10, 16}));
 
         System.out.println(countEven(38));
 
-        System.out.println(separateDigits(new int[] { 13, 25, 83, 77 }));
+        System.out.println(separateDigits(new int[] {13, 25, 83, 77}));
 
         System.out.println(alternateDigitSum(12));
 
         System.out.println(findMinDifference(null));
 
-        System.out.println(findClosestNumber(new int[] { -4, -2, 1, 4, 8 }));
-        System.out.println(findClosestNumber(new int[] { -4, -2, -4, -8 }));
-        System.out.println(findClosestNumber(new int[] { -2, -1, 1 }));
+        System.out.println(findClosestNumber(new int[] {-4, -2, 1, 4, 8}));
+        System.out.println(findClosestNumber(new int[] {-4, -2, -4, -8}));
+        System.out.println(findClosestNumber(new int[] {-2, -1, 1}));
 
-        System.out.println(summaryRanges(new int[] { 0, 1, 2, 4, 5, 7 }));
+        System.out.println(summaryRanges(new int[] {0, 1, 2, 4, 5, 7}));
 
         System.out.println(canBeTypedWords("abc de", "abc"));
         System.out.println(canBeTypedWords("world hello", "ad"));

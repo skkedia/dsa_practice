@@ -23,18 +23,11 @@ public class Cf {
     }
 
     private enum Gender {
-        MALE("cb"),
-        FEMALE("bb");
-
-        private String bb;
+        MALE("cb"), FEMALE("bb");
 
         Gender(String ans) {
-            this.bb = ans;
         }
 
-        String getBb() {
-            return bb;
-        }
     }
 
     private static int maxOperations(int[] nums) {
@@ -62,10 +55,9 @@ public class Cf {
             max = Math.max(max, arr[c - 'a']);
         }
         while (max > 1) {
-            int tmp = max;
             for (int i = 0; i < 26; i++) {
                 Math.abs(max);
-                tmp--;
+                ;
             }
             max--;
         }
@@ -73,7 +65,7 @@ public class Cf {
         return s;
     }
 
-    private static int maxProduct(int arr[], int n) {
+    private static int maxProduct(int arr[]) {
         Queue<Integer> q = new PriorityQueue<>();
         for (int i : arr) {
             q.add(i);
@@ -114,8 +106,8 @@ public class Cf {
     public int mostFrequentPrime(int[][] mat) {
         mp = new HashMap<>();
         int ans = -1;
-        int[][] dir = new int[][] { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 }, { 1, 1 }, { -1, 1 }, { -1, -1 },
-                { 1, -1 } };
+        int[][] dir =
+                new int[][] {{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, 1}, {-1, 1}, {-1, -1}, {1, -1}};
 
         for (int i = 0; i < mat.length; i++) {
             for (int j = 0; j < mat[i].length; j++) {
@@ -183,25 +175,23 @@ public class Cf {
 
         System.out.println(maxSum(12));
 
-        System.out.println(rangeBitwiseAnd(1,
-                2));
+        System.out.println(rangeBitwiseAnd(1, 2));
 
-        System.out.println(rangeBitwiseAnd(2147483646,
-                2147483647));
+        System.out.println(rangeBitwiseAnd(2147483646, 2147483647));
 
         Cf cf = new Cf();
 
-        System.out.println(cf.mostFrequentPrime(new int[][] { { 9, 3, 8 }, { 4, 2, 5 }, { 3, 8, 6 } }));
+        System.out.println(cf.mostFrequentPrime(new int[][] {{9, 3, 8}, {4, 2, 5}, {3, 8, 6}}));
 
-        System.out.println(cf.mostFrequentPrime(new int[][] { { 1, 1 }, { 9, 9 }, { 1, 1 } }));
+        System.out.println(cf.mostFrequentPrime(new int[][] {{1, 1}, {9, 9}, {1, 1}}));
 
-        System.out.println(cf.mostFrequentPrime(new int[][] { { 9, 7, 8 }, { 4, 6, 5 }, { 2, 8, 6 } }));
+        System.out.println(cf.mostFrequentPrime(new int[][] {{9, 7, 8}, {4, 6, 5}, {2, 8, 6}}));
 
-        System.out.println(maxProduct(new int[] { 1, 100, 42, 4, 23 }, 5));
+        System.out.println(maxProduct(new int[] {1, 100, 42, 4, 23}));
 
         System.out.println(lastNonEmptyString("aabcbbca"));
 
-        System.out.println(maxOperations(new int[] { 2, 2, 3, 2, 4, 2, 3, 3, 1, 3 }));
+        System.out.println(maxOperations(new int[] {2, 2, 3, 2, 4, 2, 3, 3, 1, 3}));
 
         compute(10).thenApply((data) -> {
             System.out.println(Thread.currentThread());

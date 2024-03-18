@@ -1,11 +1,10 @@
 package dsa;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class Gfg implements Serializable {
+public class Gfg {
 
     public static void main(String[] args) {
 
@@ -53,7 +52,7 @@ public class Gfg implements Serializable {
         return i >= 0 && j >= 0 && i < r && j < c;
     }
 
-    private static void dfs(int[][] coins, int row, int col, int i, int j, int d1, int d2) {
+    public static void dfs(int[][] coins, int row, int col, int i, int j, int d1, int d2) {
         i = i + d1;
         j = j + d2;
         if (!isSafe(row, col, i, j)) {
@@ -65,7 +64,7 @@ public class Gfg implements Serializable {
         dfs(coins, row, col, i, j, d1, d2);
     }
 
-    private static int ans = 0;
+    private static Integer ans = 0;
 
     class node {
         int salary;
