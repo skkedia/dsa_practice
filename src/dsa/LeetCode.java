@@ -1783,8 +1783,54 @@ public class LeetCode implements Inter, Some {
 
 
     }
+    
+    
+    private static boolean checkValidString(String s) {
+    	try {
+    		int count = 0;
+    		Stack<Character> stk = new Stack<>();
+    		for(int i = 0; i < s.length(); i++) {
+    			System.out.println(count);
+    			switch(s.charAt(i)) {
+    			case '(':
+    				stk.push('(');
+    				break;
+    			case ')':
+    				if(stk.size() > 0) {
+    					stk.pop();
+    				} else if(count > 0) {
+    					count--;
+    				} else {
+    					return false;
+    				}
+    				break;
+    			case '*':
+    				count++;
+    				break;
+    			default:
+    				System.out.println(s.charAt(i));
+    				break;
+    			}
+    		}
+    		if(stk.size() == 0 || count >= stk.size()) {
+    			return true;
+    		} else {
+    			return false;
+    		}
+    		
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	return false;
+    }
+    
+    
 
     public static void main(String[] args) {
+    	
+    	System.out.println(checkValidString("(((((*(()((((*((**(((()()*)()()()*((((**)())*)*)))))))(())(()))())((*()()(((()((()*(())*(()**)()(())"));
+    	
+    	
         /**
          * [["1","0","1","1","1"], ["1","0","1","0","1"], ["1","1","1","0","1"]]
          */

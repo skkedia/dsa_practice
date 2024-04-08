@@ -25,14 +25,11 @@ class SampleDemo implements Runnable {
 
 }
 
-class Demo implements Runnable {
-
+class Demo extends Thread {
     @Override
     public void run() {
-        // TODO Auto-generated method stub
         System.out.println("here");
     }
-
 }
 
 public class TestThread {
@@ -43,7 +40,7 @@ public class TestThread {
         SampleDemo B = new SampleDemo("B");
 
         Demo th = new Demo();
-        th.run();
+        th.start();
 
         Thread tt = new Thread(new Runnable() {
             public void run() {
