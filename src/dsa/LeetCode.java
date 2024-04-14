@@ -794,9 +794,11 @@ public class LeetCode implements Inter, Some {
     }
 
     private static boolean isPrime(Integer i) {
-        if (i == 1 || i == 2)
+		if (i == 1)
+			return false;
+		if (i == 2)
             return true;
-        for (int j = 2; j <= Math.sqrt(i); j++) {
+		for (int j = 3; j <= Math.sqrt(i); j++) {
             if (i % j == 0) {
                 return false;
             }
@@ -1779,12 +1781,6 @@ public class LeetCode implements Inter, Some {
         }
     }
 
-    public void solve(char[][] board) {
-
-
-    }
-    
-    
     private static boolean checkValidString(String s) {
     	try {
     		int count = 0;
@@ -1824,17 +1820,39 @@ public class LeetCode implements Inter, Some {
     	return false;
     }
     
-    
+	private static int maximumPrimeDifference(int[] nums) {
+		int l = 0;
+		int r = nums.length - 1;
+		boolean fl = false;
+		boolean fr = false;
+		while (r >= l) {
+			int left = nums[l];
+			int right = nums[r];
+			if (fl || isPrime(left)) {
+				fl = true;
+			} else {
+				l++;
+			}
+			if (fr || isPrime(right)) {
+				fr = true;
+			} else {
+				r--;
+			}
+			if (fl && fr) {
+				break;
+			}
+		}
+		return Math.abs(l - r);
+
+	}
 
     public static void main(String[] args) {
     	
+		System.out.println(maximumPrimeDifference(new int[] { 4, 8, 2, 8 }));
+
     	System.out.println(checkValidString("(((((*(()((((*((**(((()()*)()()()*((((**)())*)*)))))))(())(()))())((*()()(((()((()*(())*(()**)()(())"));
     	
     	
-        /**
-         * [["1","0","1","1","1"], ["1","0","1","0","1"], ["1","1","1","0","1"]]
-         */
-
         System.out.println(maxAreaOfIsland(new int[][] {{0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0}, {0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0}, {0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0},
