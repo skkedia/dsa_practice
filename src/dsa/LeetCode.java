@@ -1846,7 +1846,37 @@ public class LeetCode implements Inter, Some {
 
 	}
 
+	private static boolean canMakeSquare(char[][] grid) {
+		int[][] dirs = new int[][] { { 1, 0 }, { 0, 1 }, { 1, 1 } };
+		for (int i = 0; i < grid.length - 1; i++) {
+			for (int j = 0; j < grid.length - 1; j++) {
+				int w = 0;
+				int b = 0;
+				if (grid[i][j] == 'B')
+					b+=1;
+				else
+					w+=1;
+				for (int[] dir : dirs) {
+					int x = i + dir[0];
+					int y = j + dir[1];
+					if (x < 0 || y < 0 || x > grid.length - 1 || y > grid.length - 1)
+						continue;
+					if (grid[x][y] == 'B')
+						b+=1;
+					else
+						w+=1;
+
+				}
+				if ((b == 1 && w == 3) || (w == 1 && b == 3) || (w == 0 && b == 4) || (b == 0 && w == 4))
+					return true;
+			}
+		}
+		return false;
+	}
+	
     public static void main(String[] args) {
+    	
+		System.out.println(canMakeSquare(new char[][] { { '1', '2', 'B' }, { 'W', 'B', 'W' }, { 'B', 'W', 'B' } }));
     	
 		System.out.println(maximumPrimeDifference(new int[] { 4, 8, 2, 8 }));
 
