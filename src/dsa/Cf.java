@@ -8,6 +8,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class Cf {
 
+    
     private static int calc(int n) {
         try {
             Thread.sleep(1000);
