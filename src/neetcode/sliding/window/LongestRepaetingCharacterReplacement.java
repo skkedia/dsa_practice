@@ -13,8 +13,7 @@ public class LongestRepaetingCharacterReplacement {
 			maxo = Math.max(maxo, ch[s.charAt(r) - 'A']);
 			// we get the current window size by r - l, then we subtract 'maxo' to get the
 			// number of different characters in that window and we add 1 for the current
-			// char as
-			// r is updated later in the flow,
+			// char as r is updated later in the flow,
 			// if this greater than k then we have exhausted all the operations that we can
 			// perform
 			if (r - l - maxo + 1 > k) {
