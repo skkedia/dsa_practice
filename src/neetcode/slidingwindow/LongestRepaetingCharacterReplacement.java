@@ -1,4 +1,4 @@
-package sliding.window;
+package slidingwindow;
 
 public class LongestRepaetingCharacterReplacement {
 
