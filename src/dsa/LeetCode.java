@@ -1874,6 +1874,90 @@ public class LeetCode implements Inter, Some {
 		return false;
 	}
 	
+	public int gcd(int a, int b) {
+		while (b != 0) {
+			int temp = a % b;
+			a = b;
+			b = temp;
+		}
+		return a;
+	}
+
+	public int minAnagramLength(String s) {
+		int[] freq = new int[26];
+		for (Character c : s.toCharArray()) {
+			freq[c - 'a']++;
+		}
+		int common = freq[s.charAt(0) - 'a'];
+		for (int i = 0; i < 26; i++) {
+			if (freq[i] != 0) {
+				common = gcd(common, freq[i]);
+			}
+		}
+		int sum = 0;
+		for (int i = 0; i < 26; i++) {
+			sum += freq[i];
+		}
+		return sum / common;
+
+	}
+
+	public boolean isValid(String word) {
+		if (word == null)
+			return false;
+		if (word.length() < 3)
+			return false;
+		boolean uc = false;
+		boolean lc = false;
+		for (int i = 0; i < word.length(); i++) {
+			char c = word.charAt(i);
+			if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
+				if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'A' || c == 'E' || c == 'I'
+						|| c == 'O' || c == 'U')
+					lc = true;
+				else
+					uc = true;
+			} else if (c >= '0' && c <= '9') {
+				continue;
+			} else {
+				return false;
+			}
+		}
+		if (uc && lc)
+			return true;
+		return false;
+	}
+
+	public int findMaxK(int[] nums) {
+		Map<Integer, Integer> hm = new HashMap<>();
+		int max = -1;
+		for (Integer i : nums) {
+			hm.put(i, i);
+		}
+		for (Map.Entry<Integer, Integer> entry : hm.entrySet()) {
+			if (entry.getKey() < 0 && hm.get(Math.abs(entry.getKey())) != null) {
+				max = Math.max(max, Math.abs(entry.getKey()));
+			} else if (hm.get(Math.negateExact(entry.getKey())) != null) {
+				max = Math.max(max, entry.getKey());
+			}
+		}
+		return max;
+	}
+
+	public long maximumHappinessSum(int[] happiness, int k) {
+		PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+		for (int h : happiness) {
+			pq.add(h);
+		}
+		long ans = 0l;
+		int turns = 0;
+		for (int i = 0; i < k; i++) {
+			ans += Math.max(pq.poll() - turns, 0);
+			turns++;
+		}
+		return ans;
+	}
+
     public static void main(String[] args) {
     	
 		System.out.println(canMakeSquare(new char[][] { { '1', '2', 'B' }, { 'W', 'B', 'W' }, { 'B', 'W', 'B' } }));

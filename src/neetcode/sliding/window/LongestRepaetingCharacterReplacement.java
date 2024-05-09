@@ -20,8 +20,9 @@ public class LongestRepaetingCharacterReplacement {
 				ch[s.charAt(l) - 'A']--;
 				l++;
 			}
+			r += 1;
 			res = Math.max(res, r - l + 1);
-			r++;
+			// r++;
 		}
 		return res;
 	}
