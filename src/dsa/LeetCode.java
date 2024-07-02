@@ -2001,6 +2001,39 @@ public class LeetCode implements Inter, Some {
 		return ans;
 	}
 
+	public int[] intersect(int[] nums1, int[] nums2) {
+
+		Map<Integer, Integer> mp1 = new HashMap<>();
+		Map<Integer, Integer> mp2 = new HashMap<>();
+
+		for (Integer i : nums1) {
+			mp1.put(i, mp1.getOrDefault(i, 0) + 1);
+		}
+
+		for (Integer i : nums2) {
+			mp2.put(i, mp2.getOrDefault(i, 0) + 1);
+		}
+		List<Integer> ans = new ArrayList<>();
+
+		for (Map.Entry<Integer, Integer> en : mp1.entrySet()) {
+			if (mp2.get(en.getKey()) != null) {
+				int m1 = en.getValue();
+				int m2 = mp2.get(en.getKey());
+				m1 = m1 < m2 ? m1 : m2;
+				for (int i = 0; i < m1; i++) {
+					ans.add(en.getKey());
+				}
+			}
+		}
+
+		int[] arr = new int[ans.size()];
+		for (int i = 0; i < ans.size(); i++) {
+			arr[i] = ans.get(i);
+		}
+
+		return arr;
+	}
+
 	public static void main(String[] args) {
 
 		System.out.println(maximumEnergy(new int[] { -2, -3, -1 }, 2));
