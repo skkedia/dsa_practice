@@ -2,17 +2,11 @@ package Tree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-
-class UnderAge extends Exception {
-
-	UnderAge() {
-		super("Not allowed");
-	}
-
-}
 
 public class BalancedBinaryTree {
 
@@ -30,6 +24,25 @@ public class BalancedBinaryTree {
 
 		TreeNode(int val, TreeNode left, TreeNode right) {
 			this.val = val;
+			this.left = left;
+			this.right = right;
+		}
+	}
+
+	class Node {
+		int data;
+		Node left;
+		Node right;
+
+		Node() {
+		}
+
+		Node(int data) {
+			this.data = data;
+		}
+
+		Node(int data, Node left, Node right) {
+			this.data = data;
 			this.left = left;
 			this.right = right;
 		}
@@ -243,19 +256,36 @@ public class BalancedBinaryTree {
 		return Math.max(ans, cur);
 	}
 
+	Map<String, Integer> hm;
+
+	public List<Node> printAllDups(Node root) {
+		List<Node> ans = new ArrayList<>();
+		hm = new HashMap<>();
+
+		findDup(root, ans);
+
+		return ans;
+
+	}
+
+	private String findDup(Node root, List<Node> ans) {
+		if (root == null) {
+			return "";
+		}
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(root.data).append(",").append(findDup(root.left, ans)).append(",").append(findDup(root.right, ans));
+		hm.put(sb.toString(), hm.getOrDefault(sb.toString(), 0) + 1);
+		if (hm.get(sb.toString()) > 1)
+			ans.add(root);
+		return sb.toString();
+	}
+
 	public static void main(String[] args) throws ClassNotFoundException {
 
 		new BalancedBinaryTree().maximumLength(new int[] { 1, 2, 3, 4 });
 		new BalancedBinaryTree().findLongestConsecutiveSequence(new int[] { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 });
 		new BalancedBinaryTree().longestCommonSubsequence("AGGTAB", "GXTXAYB");
-		try {
-			throw new UnderAge();
-		} catch (UnderAge u) {
-			u.printStackTrace();
-			throw new ClassNotFoundException();
-		} catch (Exception e) {
-
-		}
 	}
 
 }

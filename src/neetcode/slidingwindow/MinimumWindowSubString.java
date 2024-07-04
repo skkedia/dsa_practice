@@ -2,6 +2,7 @@ package slidingwindow;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 public class MinimumWindowSubString {
 
@@ -43,12 +44,37 @@ public class MinimumWindowSubString {
 			if (curr.get(entries.getKey()) < entries.getValue()) {
 				return false;
 			}
-
 		}
 		return true;
 	}
 
+	public int findKthLargest(int[] nums, int k) {
+		PriorityQueue<Integer> pq = new PriorityQueue<>();
+		for (int i : nums) {
+			pq.add(i);
+			if (pq.size() > k)
+				System.out.println(pq.poll());
+		}
+		return pq.poll();
+	}
+
+	public int findMaximumSubArraySum(int[] arr) {
+		int max = Integer.MIN_VALUE;
+
+		int cur = 0;
+		for (int i = 0; i < arr.length; i++) {
+			cur = cur + arr[i];
+			max = Math.max(cur, max);
+			if (cur < 0) {
+				cur = 0;
+			}
+		}
+
+		return max;
+	}
+
 	public static void main(String[] args) {
+		new MinimumWindowSubString().findKthLargest(new int[] { 3, 2, 1, 5, 6, 4 }, 2);
 		new MinimumWindowSubString().minWindow("ADOBECODEBANC", "ABC");
 
 	}
