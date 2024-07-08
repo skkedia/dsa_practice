@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-public class MinimumWindowSubString {
+public class MinimumWindowSubString implements Runnable {
 
 	public String minWindow(String s, String t) {
 		if (t.length() > s.length())
@@ -74,8 +74,21 @@ public class MinimumWindowSubString {
 	}
 
 	public static void main(String[] args) {
+
+		Thread gg = new Thread(new MinimumWindowSubString());
+
+		gg.start();
+
+		gg.start();
+
 		new MinimumWindowSubString().findKthLargest(new int[] { 3, 2, 1, 5, 6, 4 }, 2);
 		new MinimumWindowSubString().minWindow("ADOBECODEBANC", "ABC");
+
+	}
+
+	@Override
+	public void run() {
+		System.out.println("gg");
 
 	}
 

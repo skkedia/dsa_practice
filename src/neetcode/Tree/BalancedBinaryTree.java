@@ -2,10 +2,12 @@ package Tree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Set;
 
 public class BalancedBinaryTree {
@@ -261,18 +263,14 @@ public class BalancedBinaryTree {
 	public List<Node> printAllDups(Node root) {
 		List<Node> ans = new ArrayList<>();
 		hm = new HashMap<>();
-
 		findDup(root, ans);
-
 		return ans;
-
 	}
 
 	private String findDup(Node root, List<Node> ans) {
 		if (root == null) {
 			return "";
 		}
-
 		StringBuilder sb = new StringBuilder();
 		sb.append(root.data).append(",").append(findDup(root.left, ans)).append(",").append(findDup(root.right, ans));
 		hm.put(sb.toString(), hm.getOrDefault(sb.toString(), 0) + 1);
@@ -281,8 +279,79 @@ public class BalancedBinaryTree {
 		return sb.toString();
 	}
 
+	public int minDifference(int[] nums) {
+		int ans = Integer.MAX_VALUE;
+		PriorityQueue<Integer> pq = new PriorityQueue<>();
+		for (int i : nums) {
+			pq.add(i);
+			if (pq.size() > 4)
+				pq.poll();
+		}
+		List<Integer> min = new ArrayList<>(pq);
+		Collections.sort(min);
+
+		pq = new PriorityQueue<>(Collections.reverseOrder());
+		for (int i : nums) {
+			pq.add(i);
+			if (pq.size() > 4)
+				pq.poll();
+		}
+		List<Integer> max = new ArrayList<>(pq);
+		Collections.sort(max);
+
+		for (int i = 0; i < 4; i++) {
+			ans = Math.min(ans, max.get(i) - min.get(i));
+		}
+
+		return ans;
+	}
+
+	public String[] findRelativeRanks(int[] score) {
+		PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+		Map<Integer, Integer> hm = new HashMap<>();
+		for (int i = 0; i < score.length; i++) {
+			pq.add(score[i]);
+			hm.put(score[i], i);
+		}
+		String[] ans = new String[score.length];
+		int i = 0;
+		while (!pq.isEmpty()) {
+			int x = pq.poll();
+			int y = hm.get(x);
+			if (i == 0) {
+				ans[y] = "Gold Medal";
+			} else if (i == 1) {
+				ans[y] = "Silver Medal";
+			} else if (i == 2) {
+				ans[y] = "Bronze Medal";
+			} else {
+				ans[y] = "" + (i + 1);
+			}
+			i++;
+		}
+		return ans;
+	}
+
 	public static void main(String[] args) throws ClassNotFoundException {
 
+		Thread th = new Thread() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(10000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println("hey");
+			}
+		};
+
+		th.start();
+
+		new BalancedBinaryTree().findRelativeRanks(new int[] { 10, 3, 8, 9, 4 });
+
+		new BalancedBinaryTree().minDifference(new int[] { 1, 5, 0, 10, 14, -1, -8, 50, 100, 45, 78 });
 		new BalancedBinaryTree().maximumLength(new int[] { 1, 2, 3, 4 });
 		new BalancedBinaryTree().findLongestConsecutiveSequence(new int[] { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 });
 		new BalancedBinaryTree().longestCommonSubsequence("AGGTAB", "GXTXAYB");
