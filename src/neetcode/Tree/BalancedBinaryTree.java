@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
-import java.util.Set;
 
 public class BalancedBinaryTree {
 
@@ -72,41 +70,6 @@ public class BalancedBinaryTree {
 		performInoderTraversal(node.left, al);
 		al.add(node.val);
 		performInoderTraversal(node.right, al);
-	}
-
-	public int longestCommonSubsequence(String text1, String text2) {
-		int[][] dp = new int[text1.length() + 1][text2.length() + 1];
-		for (int i = 1; i <= text1.length(); i++) {
-			for (int j = 1; j <= text2.length(); j++) {
-				if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
-					dp[i][j] = dp[i - 1][j - 1] + 1;
-				} else {
-					dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
-				}
-			}
-		}
-
-		int n = text1.length();
-		int m = text2.length();
-		int index = dp[n][m];
-		char[] arr = new char[index + 1];
-
-		while (n > 0 && m > 0) {
-			if (text1.charAt(n - 1) == text2.charAt(m - 1)) {
-				arr[index - 1] = text1.charAt(n - 1);
-				n--;
-				m--;
-				index--;
-
-			} else if (dp[n - 1][m] > dp[n][m - 1]) {
-				n--;
-			} else {
-				m--;
-			}
-		}
-		System.out.println(String.valueOf(arr));
-
-		return dp[text1.length()][text2.length()];
 	}
 
 	public long maximumImportance(int n, int[][] roads) {
@@ -201,23 +164,6 @@ public class BalancedBinaryTree {
 		for (Integer neigh : graph.get(curr)) {
 			dfs(neigh, ancestor, visited, graph, ans);
 		}
-	}
-
-	public int findLongestConsecutiveSequence(int[] arr) {
-		Set<Integer> hs = new HashSet<>();
-		for (int i : arr)
-			hs.add(i);
-		int ans = -1;
-		for (int i = 0; i < arr.length; i++) {
-			if (!hs.contains(arr[i] - 1)) {
-				int num = arr[i];
-				while (hs.contains(num)) {
-					num++;
-				}
-				ans = Math.max(ans, num - arr[i]);
-			}
-		}
-		return ans;
 	}
 
 	public int findmaximumSubArray(int[] arr) {
@@ -353,8 +299,7 @@ public class BalancedBinaryTree {
 
 		new BalancedBinaryTree().minDifference(new int[] { 1, 5, 0, 10, 14, -1, -8, 50, 100, 45, 78 });
 		new BalancedBinaryTree().maximumLength(new int[] { 1, 2, 3, 4 });
-		new BalancedBinaryTree().findLongestConsecutiveSequence(new int[] { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 });
-		new BalancedBinaryTree().longestCommonSubsequence("AGGTAB", "GXTXAYB");
+
 	}
 
 }
