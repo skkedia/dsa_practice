@@ -252,32 +252,6 @@ public class BalancedBinaryTree {
 		return ans;
 	}
 
-	public String[] findRelativeRanks(int[] score) {
-		PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
-		Map<Integer, Integer> hm = new HashMap<>();
-		for (int i = 0; i < score.length; i++) {
-			pq.add(score[i]);
-			hm.put(score[i], i);
-		}
-		String[] ans = new String[score.length];
-		int i = 0;
-		while (!pq.isEmpty()) {
-			int x = pq.poll();
-			int y = hm.get(x);
-			if (i == 0) {
-				ans[y] = "Gold Medal";
-			} else if (i == 1) {
-				ans[y] = "Silver Medal";
-			} else if (i == 2) {
-				ans[y] = "Bronze Medal";
-			} else {
-				ans[y] = "" + (i + 1);
-			}
-			i++;
-		}
-		return ans;
-	}
-
 	public static void main(String[] args) throws ClassNotFoundException {
 
 		Thread th = new Thread() {
@@ -294,8 +268,6 @@ public class BalancedBinaryTree {
 		};
 
 		th.start();
-
-		new BalancedBinaryTree().findRelativeRanks(new int[] { 10, 3, 8, 9, 4 });
 
 		new BalancedBinaryTree().minDifference(new int[] { 1, 5, 0, 10, 14, -1, -8, 50, 100, 45, 78 });
 		new BalancedBinaryTree().maximumLength(new int[] { 1, 2, 3, 4 });
