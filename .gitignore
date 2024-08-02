@@ -1,1 +1,6 @@
 /bin/
+/org.eclipse.core.resources.prefs/
+/.classpath
+.DS_Store
+bin/.DS_Store
+src/.DS_Store
