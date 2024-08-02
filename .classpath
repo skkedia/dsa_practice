@@ -8,5 +8,6 @@
 	<classpathentry excluding="neetcode/" kind="src" path="src"/>
 	<classpathentry kind="src" path="src/neetcode"/>
 	<classpathentry kind="src" path="designpatterns"/>
+	<classpathentry kind="src" path="core_concepts"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
