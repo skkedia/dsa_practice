@@ -2,7 +2,6 @@ package graph;
 
 import java.util.Arrays;
 
-//dd
 class DSU {
 	int[] rank;
 	int[] parent;
