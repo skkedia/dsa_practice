@@ -14,7 +14,10 @@ public class MaximumWidthRamp {
 		int left = 0;
 		int right = 0;
 
+		// right is traversing the rightMax array to the end
 		while (right < nums.length) {
+			// left is traversing the nums array, we increase left only if we got a bigger
+			// number in the nums array than the right array
 			while (left < right && nums[left] > rightMax[right]) {
 				left++;
 			}
@@ -38,8 +41,9 @@ public class MaximumWidthRamp {
 	}
 
 	public static void main(String[] args) {
-		new MaximumWidthRamp().maxWidthRamp(new int[] { 9, 8, 1, 0, 1, 9, 4, 0, 4, 1 });
-		new MaximumWidthRamp().maxWidthRamp(new int[] { 6, 0, 8, 2, 1, 5 });
+
+		System.out.println(new MaximumWidthRamp().maxWidthRamp(new int[] { 6, 0, 8, 2, 1, 5 }));
+		System.out.println(new MaximumWidthRamp().maxWidthRamp(new int[] { 9, 8, 1, 0, 1, 9, 4, 0, 4, 1 }));
 	}
 
 }
