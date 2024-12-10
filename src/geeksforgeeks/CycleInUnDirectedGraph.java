@@ -47,7 +47,6 @@ public class CycleInUnDirectedGraph {
 
 	private boolean dfs(int i, boolean[] vis, ArrayList<ArrayList<Integer>> adj, int j) {
 		vis[i] = true;
-
 		for (int a : adj.get(i)) {
 			if (!vis[a] && dfs(a, vis, adj, i)) {
 				return true;
