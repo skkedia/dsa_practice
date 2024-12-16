@@ -10,7 +10,8 @@ public class IslandPerimeter {
 					ans += 4;
 					if (i > 0 && grid[i - 1][j] == 1) {
 						ans = ans - 2;
-					} else if (j > 0 && grid[i][j - 1] == 1) {
+					}
+					if (j > 0 && grid[i][j - 1] == 1) {
 						ans = ans - 2;
 					}
 				}
