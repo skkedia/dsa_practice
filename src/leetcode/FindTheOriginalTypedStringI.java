@@ -37,6 +37,7 @@ public class FindTheOriginalTypedStringI {
 		System.out.println(new FindTheOriginalTypedStringI().possibleStringCount("abbcccc"));
 		final Integer i = 0;
 		new FindTheOriginalTypedStringI().calladd(i);
+		new FindTheOriginalTypedStringI().calladd1(i);
 		System.out.println(i);
 	}
 

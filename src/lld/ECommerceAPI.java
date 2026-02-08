@@ -152,6 +152,10 @@ class Player {
 	String name;
 	List<Card> cards;
 
+	public List<Card> getCards() {
+		return this.cards;
+	}
+
 }
 
 class GameHand {
@@ -204,20 +208,18 @@ class CompositeCondition {
 
 class ColorCombo implements WinningStrategy {
 
-	public List<Player> getWinner(List<Player> player) {
+	public List<Player> getWinner(List<Player> players) {
 		List<Player> winners = new ArrayList<>();
-//   for(Player player : player) {
-//       int number = player.getCards().get(0);
-//       int preNumber = 0;
-//       
-//       for(int i = 1; i < player.getCards().size(); i++) {
-//           if(player.getCard().get(i).COLOR() != number) {
-//               break;   
-//           }
-//       }
-//   }
+		for (Player player : players) {
+			int number = player.getCards().get(0).number;
+			for (int i = 1; i < player.getCards().size(); i++) {
+				if (player.getCards().get(i).number != number) {
+					break;
+				}
+				winners.add(player);
+			}
+		}
 		return null;
-
 	}
 }
 

@@ -20,12 +20,16 @@ class ServeDrinkSummary {
 }
 
 class OutOfStockException extends Exception {
+	private static final long serialVersionUID = 8149500010587320069L;
+
 	public OutOfStockException(String message) {
 		super(message);
 	}
 }
 
 class InsufficientMoneyException extends Exception {
+	private static final long serialVersionUID = 1824894424630413234L;
+
 	public InsufficientMoneyException() {
 		super();
 	}
@@ -77,8 +81,6 @@ class Solution {
 		 */
 		Integer i = 0;
 
-		String s = String.valueOf(i.intValue());
-
 		quantity[0] = 2;
 		quantity[1] = 0;
 		quantity[2] = 0;
@@ -103,7 +105,6 @@ class Solution {
 		int[][] req = new int[][] { { 2, 4 }, { 2, 3 }, { 2, 5 }, { 2, 3 } };
 
 		int totalNumberOfRequests = 4;
-		int idd = 0;
 		while (totalNumberOfRequests-- > 0) {
 			arr = req[i++];
 			int buttonPressed = arr[0], money = arr[1];
