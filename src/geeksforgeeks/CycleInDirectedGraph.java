@@ -69,4 +69,43 @@ public class CycleInDirectedGraph {
 
 	}
 
+	class DSU {
+		int[] parent;
+		int[] rank;
+
+		DSU(int n) {
+			for (int i = 0; i < n; i++) {
+				parent[i] = i;
+				rank[i] = 1;
+			}
+		}
+
+		public int find(int element) {
+			if (element == parent[element]) {
+				return element;
+			}
+			parent[element] = find(parent[element]);
+			return parent[element];
+		}
+
+		public boolean union(int u, int v) {
+			int uParent = find(u);
+			int vParent = find(v);
+
+			if (uParent == vParent) {
+				return true;
+			}
+
+			if (rank[uParent] > rank[vParent]) {
+				parent[vParent] = uParent;
+			} else if (rank[uParent] < rank[vParent]) {
+				parent[uParent] = vParent;
+			} else {
+				parent[uParent] = vParent;
+				rank[uParent]++;
+			}
+			return false;
+		}
+	}
+
 }

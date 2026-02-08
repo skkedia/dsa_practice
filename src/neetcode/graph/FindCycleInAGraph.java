@@ -1,6 +1,8 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 class DisJointSet {
 
@@ -45,6 +47,14 @@ class DisJointSet {
 }
 
 public class FindCycleInAGraph {
+	class iPair {
+		int first, second;
+
+		iPair(int first, int second) {
+			this.first = first;
+			this.second = second;
+		}
+	}
 
 	public int detectCycle(int V, ArrayList<ArrayList<Integer>> adj) {
 		DisJointSet dis = new DisJointSet(V);
@@ -62,6 +72,33 @@ public class FindCycleInAGraph {
 	}
 
 	public static void main(String[] args) {
+		int src = 0;
+		ArrayList<ArrayList<iPair>> adj = new ArrayList<>();
+
+		ArrayList<Integer> ans = new ArrayList<>();
+
+		for (int i = 0; i < adj.size(); i++) {
+			ans.add(Integer.MAX_VALUE);
+		}
+
+		Queue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+		pq.add(new int[] { 0, src });
+		ans.set(src, 0);
+		while (!pq.isEmpty()) {
+			int[] curEle = pq.poll();
+			int dis = curEle[0];
+			int node = curEle[1];
+
+			for (iPair temp : adj.get(node)) {
+				int adjNode = temp.first;
+				int adjWeight = temp.second;
+
+				if (dis + adjWeight < ans.get(adjNode)) {
+					ans.set(adjNode, dis + adjWeight);
+					pq.offer(new int[] { ans.get(adjNode), adjNode });
+				}
+			}
+		}
 
 	}
 

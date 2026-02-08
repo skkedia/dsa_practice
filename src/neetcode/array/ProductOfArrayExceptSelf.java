@@ -2,6 +2,33 @@ package array;
 
 public class ProductOfArrayExceptSelf {
 
+	public int[] productExceptSelf2(int[] nums) {
+		int cnt = 0;
+		int pro = 1;
+
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] == 0) {
+				cnt++;
+			} else {
+				pro = pro * nums[i];
+			}
+		}
+
+		for (int i = 0; i < nums.length; i++) {
+			if (cnt == 0) {
+				nums[i] = pro / nums[i];
+			} else if (cnt > 0) {
+				if (nums[i] != 0 || cnt > 1) {
+					nums[i] = 0;
+				} else if (cnt == 1) {
+					nums[i] = pro;
+				}
+			}
+		}
+		return nums;
+
+	}
+
 	public int[] productExceptSelf(int[] nums) {
 		int[] prefix = new int[nums.length];
 		prefix[0] = nums[0];
@@ -48,6 +75,7 @@ public class ProductOfArrayExceptSelf {
 	public static void main(String[] args) {
 		new ProductOfArrayExceptSelf().productExceptSelfV2(new int[] { 1, 2, 3, 4 });
 		new ProductOfArrayExceptSelf().productExceptSelfV2(new int[] { -1, 1, 0, -3, 3 });
+
 	}
 
 }
