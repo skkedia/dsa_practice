@@ -15,8 +15,20 @@ public class WaterBottles {
 
 	}
 
+	public int numWaterBottles1(int numBottles, int numExchange) {
+		int ans = 0;
+		int empty = 0;
+		while (numBottles > 0) {
+			ans += numBottles;
+			empty = empty + numBottles;
+			numBottles = empty / numExchange;
+			empty = empty % numExchange;
+		}
+		return ans + numBottles;
+	}
+
 	public static void main(String[] args) {
-		System.out.println(new WaterBottles().numWaterBottles(9, 3));
+		System.out.println(new WaterBottles().numWaterBottles1(40, 4));
 	}
 
 }
